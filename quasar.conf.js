@@ -9,7 +9,7 @@ module.exports = function(ctx) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://quasar.dev/quasar-cli/boot-files
-    boot: ['i18n'],
+    boot: [],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
     css: ['app.sass'],
@@ -30,7 +30,7 @@ module.exports = function(ctx) {
 
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
-      vueRouterMode: 'history', // available values: 'hash', 'history'
+      vueRouterMode: 'history' // available values: 'hash', 'history'
 
       // transpile: false,
 
@@ -50,17 +50,7 @@ module.exports = function(ctx) {
 
       // https://quasar.dev/quasar-cli/handling-webpack
       // extendWebpack (cfg) {},
-      extendWebpack(cfg) {
-        cfg.module.rules.push({
-          resourceQuery: /blockType=i18n/,
-          use: [
-            { loader: '@kazupon/vue-i18n-loader' },
-            { loader: 'yaml-loader' }
-          ]
-        })
-      }
     },
-
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
     devServer: {
       open: false, // leave this here for Codesandbox to work
