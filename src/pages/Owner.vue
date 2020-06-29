@@ -25,7 +25,7 @@
       </div>
 
       <q-btn color="primary" icon="warning" label="Abandon" @click="abandon" class="q-ma-md"></q-btn>
-      <q-btn color="red" icon="error" label="Enregister" @click="save" class="q-ma-md"></q-btn>
+      <q-btn color="red" icon="error" label="Enregister" @click="register" class="q-ma-md"></q-btn>
 
       <!-- <div class="q-gutter-sm">
         <q-checkbox v-model="teal" label="Teal"/>
@@ -47,11 +47,13 @@ export default {
       codePostal: '',
       ville: '',
       pays: 'France',
+      iban:"",
       columns: [
-        {name: 'name', required: true, label: 'Nom', align: 'left', sortable: true},
-        {name: 'contract', align: 'center', label: 'Contrat', sortable: true}
+        {name: 'naame', required: true, label: 'Nom', align: 'left', sortable: true},
+        {name: 'contract', align: 'center', label: 'Contrat', sortable: true},
+        {name: 'loue', align: 'center', label: 'Loue', sortable: true}
       ],
-      tabledata: [{}]
+      tabledata: [{naame:'aaa', contract:'A1234432', loue:'no'}]
     }
   },
   methods: {
@@ -62,6 +64,13 @@ export default {
     },
     notify: function() {
       alert('notify clicked')
+    },
+    register ({commit}, form) {
+      return axios.post('api/auth/register', form)
+        .then(response => {
+          commit('login', {token: response.data.token, user: response.data.user})
+          setAxiosHeaders(response.data.token)
+      })
     }
   }
 }

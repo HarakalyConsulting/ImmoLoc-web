@@ -1,19 +1,25 @@
-
 const routes = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
-    children: [
-      { path: '', component: () => import('pages/Index.vue') }
-    ]
+    children: [{ path: '', component: () => import('pages/Index.vue') }]
   },
   {
     path: '/Owner',
     component: () => import('layouts/MainLayout.vue'),
-    children: [
-      { path: '', component: () => import('pages/Owner.vue') }
-    ]
+    children: [{ path: '', component: () => import('pages/Owner.vue') }]
   },
+  {
+    path: '/Login',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/login.vue') }]
+  },
+  {
+    path: '/Register',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/register.vue') }]
+  },
+
   // Always leave this as last one
   {
     path: '*',
