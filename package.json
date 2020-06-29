@@ -1,7 +1,7 @@
 {
-  "name": "quasar",
+  "name": "immoloc",
   "version": "0.0.1",
-  "description": "A Quasar Framework app",
+  "description": "",
   "productName": "Quasar App",
   "author": "add.your.email@here.com",
   "private": true,
@@ -33,5 +33,6 @@
     "node": ">= 10.17.0",
     "npm": ">= 6.13.4",
     "yarn": ">= 1.19.1"
-  }
+  },
+  "keywords": []
 }
