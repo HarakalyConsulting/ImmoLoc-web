@@ -15,12 +15,12 @@ const routes = [
     children: [{ path: '', component: () => import('pages/Lodger.vue') }]
   },
   {
-    path: '/Login',
+    path: '/:user/Login',
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', component: () => import('pages/login.vue') }]
   },
   {
-    path: '/Register',
+    path: '/:user/Register',
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', component: () => import('pages/register.vue') }]
   },
