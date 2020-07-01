@@ -51,13 +51,7 @@ export default {
         iban: ''
       },
       columns: [
-        {
-          name: 'name',
-          required: true,
-          label: 'Nom',
-          align: 'left',
-          sortable: true
-        },
+        { name: 'name', required: true, label: 'Nom', align: 'left', sortable: true},
         { name: 'contract', align: 'center', label: 'Contrat', sortable: true },
         { name: 'loue', align: 'center', label: 'Loue', sortable: true }
       ],
