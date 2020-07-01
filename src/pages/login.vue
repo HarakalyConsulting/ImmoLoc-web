@@ -3,6 +3,12 @@
 export default
 {
     name: 'Login',
+    methods: {
+      signIn: function() {
+        this.window.href = 'Profile'
+        alert('test')
+      }
+    },
     data()
     {
         return {
@@ -61,7 +67,7 @@ export default
             </div>
           </q-card-section>
           <q-card-actions class="q-px-lg">
-            <q-btn unelevated size="lg" color="purple-4" class="full-width text-white" label="Sign In" to="Profile"/>
+            <q-btn unelevated size="lg" color="purple-4" class="full-width text-white" label="Sign In" @click="signIn"/>
           </q-card-actions>
           <q-card-section class="text-center q-pa-sm">
             <p class="text-grey-6">Forgot your password?</p>
