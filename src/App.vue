@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'Appiii',
+  name: 'App',
   created: function () {
     axios.interceptors.response.use(undefined, function (err) {
       return new Promise(function (resolve, reject) {
