@@ -5,31 +5,31 @@ const routes = [
     children: [{ path: '', component: () => import('pages/Index.vue') }]
   },
   {
-    path: '/Owner',
+    path: '/owner/profile',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/Owner/Profile.vue') }]
+    children: [{ path: '', component: () => import('pages/owner/Profile.vue') }]
   },
   {
-    path: '/Lodger',
+    path: '/lodger/profile',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/Lodger/Profile.vue') }]
+    children: [{ path: '', component: () => import('pages/lodger/Profile.vue') }]
   },
   {
-    path: '/:usertype/Login',
+    path: '/:usertype/login',
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', component: () => import('pages/login.vue') }]
   },
   {
-    path: '/:usertype/Register',
+    path: '/:usertype/register',
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', component: () => import('pages/register.vue') }]
   },
 
   // Always leave this as last one
-  {
-    path: '*',
-    component: () => import('pages/Error404.vue')
-  }
+  // {
+  //   path: '*',
+  //   component: () => import('pages/Error404.vue')
+  // }
 ]
 
 export default routes
