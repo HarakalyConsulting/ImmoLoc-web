@@ -7,20 +7,20 @@ const routes = [
   {
     path: '/Owner',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/Owner.vue') }]
+    children: [{ path: '', component: () => import('pages/Owner/Profile.vue') }]
   },
   {
     path: '/Lodger',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/Lodger.vue') }]
+    children: [{ path: '', component: () => import('pages/Lodger/Profile.vue') }]
   },
   {
-    path: '/:user/Login',
+    path: '/:usertype/Login',
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', component: () => import('pages/login.vue') }]
   },
   {
-    path: '/:user/Register',
+    path: '/:usertype/Register',
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', component: () => import('pages/register.vue') }]
   },

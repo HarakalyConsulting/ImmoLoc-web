@@ -6,6 +6,7 @@
   "author": "add.your.email@here.com",
   "private": true,
   "scripts": {
+    "start": "quasar dev",
     "dev": "quasar dev",
     "post-update": "yarn upgrade --latest",
     "test": "echo \"No test specified\" && exit 0"
