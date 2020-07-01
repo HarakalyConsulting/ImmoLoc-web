@@ -26,10 +26,10 @@ const routes = [
   },
 
   // Always leave this as last one
-  // {
-  //   path: '*',
-  //   component: () => import('pages/Error404.vue')
-  // }
+  {
+    path: '*',
+    component: () => import('pages/Error404.vue')
+  }
 ]
 
 export default routes

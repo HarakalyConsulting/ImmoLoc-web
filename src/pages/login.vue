@@ -1,28 +1,23 @@
-
 <script>
-export default
-{
+  export default {
     name: 'Login',
     methods: {
-      signIn: function() {
-        this.window.href = 'Profile'
-        alert('test')
+      signIn: function () {
+        window.location.href = this.usertype + '/Profile'
       }
     },
-    data()
-    {
-        return {
-            usertype: '',
-            email: '',
-            username: '',
-            password: ''
-        };
+    data() {
+      return {
+        usertype: '',
+        email: '',
+        username: '',
+        password: ''
+      };
     },
-    created()
-    {
-        this.usertype = this.$route.params.usertype;
+    created() {
+      this.usertype = this.$route.params.usertype;
     }
-}
+  }
 </script>
 
 <template>
@@ -36,19 +31,19 @@ export default
           <q-card-section class="bg-deep-purple-7">
             <h4 class="text-h5 text-white q-my-md">Company - {{usertype}}</h4>
             <div class="absolute-bottom-right q-pr-md" style="transform: translateY(50%);">
-              <q-btn fab icon="add" color="purple-4" />
+              <q-btn fab icon="add" color="purple-4"/>
             </div>
           </q-card-section>
           <q-card-section>
             <q-form class="q-px-sm q-pt-xl">
               <q-input square clearable v-model="email" type="email" label="Email">
                 <template v-slot:prepend>
-                  <q-icon name="email" />
+                  <q-icon name="email"/>
                 </template>
               </q-input>
               <q-input square clearable v-model="password" type="password" label="Password">
                 <template v-slot:prepend>
-                  <q-icon name="lock" />
+                  <q-icon name="lock"/>
                 </template>
               </q-input>
             </q-form>
@@ -56,13 +51,13 @@ export default
           <q-card-section>
             <div class="text-center q-pa-md q-gutter-md">
               <q-btn round color="indigo-7">
-                <q-icon name="fab fa-facebook-f" size="1.2rem" />
+                <q-icon name="fab fa-facebook-f" size="1.2rem"/>
               </q-btn>
               <q-btn round color="red-8">
-                <q-icon name="fab fa-google-plus-g" size="1.2rem" />
+                <q-icon name="fab fa-google-plus-g" size="1.2rem"/>
               </q-btn>
               <q-btn round color="light-blue-5">
-                <q-icon name="fab fa-twitter" size="1.2rem" />
+                <q-icon name="fab fa-twitter" size="1.2rem"/>
               </q-btn>
             </div>
           </q-card-section>

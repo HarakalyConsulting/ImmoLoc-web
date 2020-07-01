@@ -1,7 +1,7 @@
 <template>
   <q-page class="flex flex-center">
     <div>
-      <div class="text-h6">Proprietaires details</div>
+      <div class="text-h6">Profile Locataire</div>
       <div class="q-gutter-md row items-start">
         <q-input v-model="lastName" label="Nom"/>
         <q-input v-model="firstName" label="Prenom"/>
@@ -13,15 +13,6 @@
         <q-input v-model="codePostal" label="Code Postal"/>
         <q-input v-model="ville" label="Ville"/>
         <q-input v-model="pays" label="Pays"/>
-      </div>
-
-      <div class="text-h6">Details Bancaires</div>
-      <div class="q-gutter-md row items-start">
-        <q-input v-model="iban" label="IBAN" mask="#### #### #### ####"/>
-      </div>
-
-      <div class="q-pa-md">
-        <q-table title="Proprietes" :data="tabledata" :columns="columns" row-key="name"/>
       </div>
 
       <q-btn color="primary" icon="warning" label="Abandon" @click="abandon" class="q-ma-md"></q-btn>
@@ -47,13 +38,7 @@ export default {
       codePostal: '',
       ville: '',
       pays: 'France',
-      iban:"",
-      columns: [
-        {name: 'naame', required: true, label: 'Nom', align: 'left', sortable: true},
-        {name: 'contract', align: 'center', label: 'Contrat', sortable: true},
-        {name: 'loue', align: 'center', label: 'Loue', sortable: true}
-      ],
-      tabledata: [{naame:'aaa', contract:'A1234432', loue:'no'}]
+      iban:""
     }
   },
   methods: {
