@@ -59,14 +59,16 @@ export default {
     }
   },
   methods: {
-    save: function() {
-      alert(this.a.firstName)
-    },
+    // save: function() {
+    //   alert(this.a.firstName)
+    // },
+    // notify: function() {
+    //   alert('notify clicked')
+    // },
+
+    //  Send filled in structure 'a' to backend for registration
     abandon: function() {},
-    notify: function() {
-      alert('notify clicked')
-    },
-    register({ commit }, form) {
+    register({ commit }, a) {
       return axios.post('api/auth/register', form).then(response => {
         commit('login', {
           token: response.data.token,
