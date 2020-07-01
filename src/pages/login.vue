@@ -1,3 +1,24 @@
+
+<script>
+export default
+{
+    name: 'Login',
+    data()
+    {
+        return {
+            usertype: '',
+            email: '',
+            username: '',
+            password: ''
+        };
+    },
+    created()
+    {
+        this.usertype = this.$route.params.usertype;
+    }
+}
+</script>
+
 <template>
   <q-page
     class="window-height window-width row justify-center items-center"
@@ -7,7 +28,7 @@
       <div class="row">
         <q-card square class="shadow-24" style="width:300px;height:485px;">
           <q-card-section class="bg-deep-purple-7">
-            <h4 class="text-h5 text-white q-my-md">Company &amp; Co</h4>
+            <h4 class="text-h5 text-white q-my-md">Company - {{usertype}}</h4>
             <div class="absolute-bottom-right q-pr-md" style="transform: translateY(50%);">
               <q-btn fab icon="add" color="purple-4" />
             </div>
@@ -50,19 +71,6 @@
     </div>
   </q-page>
 </template>
-
-<script>
-export default {
-  name: 'Login',
-  data () {
-    return {
-      email: '',
-      username: '',
-      password: ''
-    }
-  }
-}
-</script>
 
 <style>
 </style>
