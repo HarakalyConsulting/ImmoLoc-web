@@ -1,18 +1,18 @@
 <template>
   <q-page class="flex flex-center">
     <div>
-      <div class="text-h6">Proprietaires details</div>
+      <div class="text-h6">Profile proprietaire</div>
       <div class="q-gutter-md row items-start">
-        <q-input v-model="lastName" label="Nom"/>
-        <q-input v-model="firstName" label="Prenom"/>
+        <q-input v-model="a.lastName" label="Nom"/>
+        <q-input v-model="a.firstName" label="Prenom"/>
       </div>
 
       <div class="text-h6">Address</div>
       <div class="q-gutter-md row items-start">
-        <q-input v-model="rue" label="Rue"/>
-        <q-input v-model="codePostal" label="Code Postal"/>
-        <q-input v-model="ville" label="Ville"/>
-        <q-input v-model="pays" label="Pays"/>
+        <q-input v-model="a.rue" label="Rue"/>
+        <q-input v-model="a.codePostal" label="Code Postal"/>
+        <q-input v-model="a.ville" label="Ville"/>
+        <q-input v-model="a.pays" label="Pays"/>
       </div>
 
       <div class="text-h6">Details Bancaires</div>
@@ -41,35 +41,44 @@ export default {
   name: 'PageIndex',
   data: function() {
     return {
-      firstName: '',
-      lastName: '',
-      rue: '',
-      codePostal: '',
-      ville: '',
-      pays: 'France',
-      iban:"",
+      a: {
+        firstName: '',
+        lastName: '',
+        rue: '',
+        codePostal: '',
+        ville: '',
+        pays: 'France',
+        iban: ''
+      },
       columns: [
-        {name: 'naame', required: true, label: 'Nom', align: 'left', sortable: true},
-        {name: 'contract', align: 'center', label: 'Contrat', sortable: true},
-        {name: 'loue', align: 'center', label: 'Loue', sortable: true}
+        {
+          name: 'name',
+          required: true,
+          label: 'Nom',
+          align: 'left',
+          sortable: true
+        },
+        { name: 'contract', align: 'center', label: 'Contrat', sortable: true },
+        { name: 'loue', align: 'center', label: 'Loue', sortable: true }
       ],
-      tabledata: [{naame:'aaa', contract:'A1234432', loue:'no'}]
+      tabledata: [{ name: 'aaa', contract: 'A1234432', loue: 'no' }]
     }
   },
   methods: {
     save: function() {
-      alert(this.firstName)
+      alert(this.a.firstName)
     },
-    abandon: function() {
-    },
+    abandon: function() {},
     notify: function() {
       alert('notify clicked')
     },
-    register ({commit}, form) {
-      return axios.post('api/auth/register', form)
-        .then(response => {
-          commit('login', {token: response.data.token, user: response.data.user})
-          setAxiosHeaders(response.data.token)
+    register({ commit }, form) {
+      return axios.post('api/auth/register', form).then(response => {
+        commit('login', {
+          token: response.data.token,
+          user: response.data.user
+        })
+        setAxiosHeaders(response.data.token)
       })
     }
   }
