@@ -60,7 +60,7 @@ export default {
           animated>
           <q-step
             :name="1"
-            title="Select campaign settings"
+            title="Situation sociale"
             icon="settings"
             :done="step > 1">
             For each ad campaign that you create, you can control how much you're willing to
@@ -74,15 +74,13 @@ export default {
 
           <q-step
             :name="2"
-            title="Create an ad group"
-            caption="Optional"
-            icon="create_new_folder"
-            :done="step > 2"
-          >
+            title="Documents a fournir"
+            icon="assignment"
+            :done="step > 2">
             An ad group contains one or more ads which target a shared set of keywords.
 
             <q-stepper-navigation>
-              <q-btn @click="step = 4" color="primary" label="Continue" />
+              <q-btn @click="step = 3" color="primary" label="Continue" />
               <q-btn flat @click="step = 1" color="primary" label="Back" class="q-ml-sm" />
             </q-stepper-navigation>
           </q-step>
@@ -91,16 +89,19 @@ export default {
             :name="3"
             title="Ad template"
             icon="assignment"
-            disable
-          >
+            :done="step > 3">
             This step won't show up because it is disabled.
+            <q-stepper-navigation>
+              <q-btn color="primary" label="Finish" />
+              <q-btn flat @click="step = 4" color="primary" label="Back" class="q-ml-sm" />
+            </q-stepper-navigation>
           </q-step>
 
           <q-step
             :name="4"
             title="Create an ad"
             icon="add_comment"
-          >
+            :done="step > 4">
             Try out different ad text to see what brings in the most customers, and learn how to
             enhance your ads using features like ad extensions. If you run into any problems with
             your ads, find out how to tell if they're running and how to resolve approval issues.
@@ -111,6 +112,7 @@ export default {
             </q-stepper-navigation>
           </q-step>
         </q-stepper>
+
         <q-btn color="primary" icon="warning" label="Abandon" @click="abandon" class="q-ma-md"></q-btn>
         <q-btn color="red" icon="error" label="Enregister" @click="register" class="q-ma-md"></q-btn>
       </div>
