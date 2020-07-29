@@ -20,7 +20,7 @@
         <q-input v-model="iban" label="IBAN" mask="#### #### #### ####"/>
       </div>
 
-      <div class="q-pa-md">
+      <div class="q-py-md">
         <q-table title="Proprietes" :data="tabledata" :columns="columns" row-key="name"/>
       </div>
 
@@ -51,9 +51,9 @@ export default {
         iban: ''
       },
       columns: [
-        { name: 'name', required: true, label: 'Nom', align: 'left', sortable: true},
-        { name: 'contract', align: 'center', label: 'Contrat', sortable: true },
-        { name: 'loue', align: 'center', label: 'Loue', sortable: true }
+        { name: 'name', field: 'name', required: true, label: 'Nom', align: 'left', sortable: true},
+        { name: 'contract', field: 'contract', align: 'center', label: 'Contrat', sortable: true },
+        { name: 'loue', field: 'loue', align: 'center', label: 'Loue', sortable: true }
       ],
       tabledata: [{ name: 'aaa', contract: 'A1234432', loue: 'no' }]
     }
