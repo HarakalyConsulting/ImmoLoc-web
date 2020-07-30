@@ -42,10 +42,14 @@ export default {
     }
   },
   methods: {
-    save({ commit }, a) {      alert('Donnees enregistrees')
+    save({ commit }, a)
+    {
+      alert('Donnees enregistrees')
       // <MainLayout name="llll"></MainLayout>
 
-      axios.post('api/auth/register', form).then(response => {
+      this.$store.commit('main/toolbarMessage', 'NEW VALUE!');
+
+      this.$axios.post('api/auth/register', form).then(response => {
         commit('login', {
           token: response.data.token,
           user: response.data.user
@@ -59,7 +63,7 @@ export default {
 
 
 <template>
-  <q-page class="flex flex-center">
+  <q-page class="q-mt-lg q-pa-md bg-grey-2">
     <div>
       <div class="text-h6">Profile proprietaire</div>
       <div class="q-gutter-md row items-start">

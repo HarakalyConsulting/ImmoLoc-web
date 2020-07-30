@@ -35,7 +35,7 @@ export default {
 
 
 <template>
-  <q-page class="flex flex-center">
+  <q-page class="q-mt-lg q-pa-md bg-grey-2">
     <div>
       <div class="text-h6">Profile Locataire</div>
       <div class="q-gutter-md row items-start">
@@ -50,7 +50,7 @@ export default {
         <q-input v-model="ville" label="Ville"/>
         <q-input v-model="pays" label="Pays"/>
       </div>
-    
+
       <div class="text-h6">Dossier</div>
       <div class="q-pa-sm">
         <q-stepper
