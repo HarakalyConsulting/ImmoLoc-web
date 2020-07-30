@@ -4,11 +4,11 @@ import EssentialLink from 'components/EssentialLink.vue'
 
 export default
 {
-    name: 'MainLayout',
-    components:
-    {
-        EssentialLink
-    },
+  name: 'MainLayout',
+  components:
+  {
+    EssentialLink
+  },
     data()
     {
         return {
@@ -25,11 +25,11 @@ export default
 <template>
   <q-layout view="lHh Lpr lFf">
 
-    <q-header>
+    <q-header name="header">
       <q-toolbar class="bg-grey-8">
         <q-btn flat dense round icon="menu" aria-label="Menu" @click="leftDrawerOpen = !leftDrawerOpen"/>
         <q-toolbar-title>APP</q-toolbar-title>
-        <div>Quasar v{{ $q.version }}</div>
+        <div>Quasar v{{ head.name }}</div>
       </q-toolbar>
     </q-header>
 
