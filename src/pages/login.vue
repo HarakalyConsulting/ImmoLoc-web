@@ -72,7 +72,7 @@
             <q-btn unelevated size="lg" color="purple-4" class="full-width text-white" label="Sign In" @click="signIn"/>
           </q-card-actions>
           <q-card-section class="text-center q-pa-sm">
-            <p class="text-grey-6">Forgot your password?</p>
+            <a class="text-grey-6" href="register">Forgot your password?</a>
           </q-card-section>
         </q-card>
       </div>

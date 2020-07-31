@@ -41,7 +41,7 @@
             />
           </q-card-actions>
           <q-card-section class="text-center q-pa-sm">
-            <p class="text-grey-6">Return to login</p>
+            <a class="text-grey-6" href="login">Return to login</a>
           </q-card-section>
         </q-card>
       </div>
