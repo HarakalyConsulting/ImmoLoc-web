@@ -1,36 +1,58 @@
 <script>
-export default {
-  name: 'PageIndex',
-  data: function() {
-    return {
-      step: 1,
-      firstName: '',
-      lastName: '',
-      rue: '',
-      codePostal: '',
-      ville: '',
-      pays: 'France',
-      iban:""
-    }
-  },
-  methods: {
-    save: function() {
-      alert(this.firstName)
+  // https://serversideup.net/drag-and-drop-file-uploads-with-vuejs-and-axios/
+  export default {
+    name: 'PageIndex',
+    data: function () {
+      return {
+        step: 1,
+        firstName: '',
+        lastName: '',
+        rue: '',
+        codePostal: '',
+        ville: '',
+        pays: 'France',
+        iban: "",
+        dragAndDropCapable: false,
+        files: []
+      }
     },
-    abandon: function() {
-    },
-    notify: function() {
-      alert('notify clicked')
-    },
-    register ({commit}, form) {
-      return axios.post('api/auth/register', form)
-      .then(response => {
-        commit('login', {token: response.data.token, user: response.data.user})
-        setAxiosHeaders(response.data.token)
-      })
-    }
+    methods: [{
+      determineDragAndDropCapable() {
+        var div = document.createElement('div');
+        return (('draggable' in div)
+          || ('ondragstart' in div && 'ondrop' in div))
+          && 'FormData' in window
+          && 'FileReader' in window;
+      },
+
+      upload(e) {
+        this.dragAndDropCapable = this.determineDragAndDropCapable();
+        if (this.dragAndDropCapable) {
+          ['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop'].forEach(function (evt) {
+            this.$refs.fileform.addEventListener(evt, function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+            }.bind(this), false);
+          }.bind(this));
+          this.$refs.fileform.addEventListener('drop', function (e) {
+            for (let i = 0; i < e.dataTransfer.files.length; i++) {
+              this.files.push(e.dataTransfer.files[i]);
+            }
+          }.bind(this));
+        }
+      },
+
+      save: function () {
+        alert(this.firstName);
+      },
+
+      abandon: function () {
+      },
+      notify: function () {
+        alert('notify clicked')
+      }
+    }]
   }
-}
 </script>
 
 
@@ -68,7 +90,7 @@ export default {
             your ads to show on, and more.
 
             <q-stepper-navigation>
-              <q-btn @click="step = 2" color="primary" label="Continue" />
+              <q-btn @click="step = 2" color="primary" label="Continue"/>
             </q-stepper-navigation>
           </q-step>
 
@@ -80,8 +102,8 @@ export default {
             An ad group contains one or more ads which target a shared set of keywords.
 
             <q-stepper-navigation>
-              <q-btn @click="step = 3" color="primary" label="Continue" />
-              <q-btn flat @click="step = 1" color="primary" label="Back" class="q-ml-sm" />
+              <q-btn @click="step = 3" color="primary" label="Continue"/>
+              <q-btn @click="step = 1" class="q-ml-sm" color="primary" flat label="Back"/>
             </q-stepper-navigation>
           </q-step>
 
@@ -92,8 +114,8 @@ export default {
             :done="step > 3">
             This step won't show up because it is disabled.
             <q-stepper-navigation>
-              <q-btn color="primary" label="Finish" />
-              <q-btn flat @click="step = 4" color="primary" label="Back" class="q-ml-sm" />
+              <q-btn color="primary" label="Finish"/>
+              <q-btn @click="step = 4" class="q-ml-sm" color="primary" flat label="Back"/>
             </q-stepper-navigation>
           </q-step>
 
@@ -107,8 +129,8 @@ export default {
             your ads, find out how to tell if they're running and how to resolve approval issues.
 
             <q-stepper-navigation>
-              <q-btn color="primary" label="Finish" />
-              <q-btn flat @click="step = 2" color="primary" label="Back" class="q-ml-sm" />
+              <q-btn color="primary" label="Finish"/>
+              <q-btn @click="step = 2" class="q-ml-sm" color="primary" flat label="Back"/>
             </q-stepper-navigation>
           </q-step>
         </q-stepper>
