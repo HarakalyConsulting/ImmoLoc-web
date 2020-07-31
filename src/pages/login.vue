@@ -3,7 +3,7 @@
     name: 'Login',
     methods: {
       signIn: function () {
-        this.$axios.post('http://api/v1/auth/login', form).then(response => {
+        this.$axios.post('http://localhost:8888/api/v1/auth/login', form).then(response => {
           console.log(response.data)
           setAxiosHeaders(response.data.token)
         }).catch(err => {
