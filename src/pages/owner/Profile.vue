@@ -44,18 +44,18 @@ export default {
   methods: {
     save({ commit }, a)
     {
-      alert('Donnees enregistrees')
-      // <MainLayout name="llll"></MainLayout>
-
       this.$store.commit('main/toolbarMessage', 'NEW VALUE!');
 
-      this.$axios.post('api/auth/register', form).then(response => {
+      alert('Donnees enregistrees')
+
+      this.$axios.post('http://api/v1//auth/register', form).then(response => {
         commit('login', {
           token: response.data.token,
           user: response.data.user
         })
         setAxiosHeaders(response.data.token)
-      }) //.then(ret) => {if (ret == undefined) alert("Login failure"); else }
+      })
+      //.then(ret) => {if (ret == undefined) alert("Login failure"); else }
     }
   }
 }

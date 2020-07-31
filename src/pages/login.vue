@@ -3,6 +3,13 @@
     name: 'Login',
     methods: {
       signIn: function () {
+        this.$axios.post('http://api/v1/auth/login', form).then(response => {
+          console.log(response.data)
+          setAxiosHeaders(response.data.token)
+        }).catch(err => {
+          console.error(err)
+        });
+
         window.location.href = this.usertype + '/Profile'
       }
     },
