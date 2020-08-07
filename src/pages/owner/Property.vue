@@ -33,7 +33,7 @@
 
 
           <div v-for="(room, index) in plans.data" :key="index">
-              <room-component :room="room"></room-component>
+              <room-component :data="room"></room-component>
           </div>
 
 

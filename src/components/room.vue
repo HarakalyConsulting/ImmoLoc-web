@@ -1,8 +1,8 @@
 <template class="Room">
-  <section :class="room.color">
+  <section :class="data.color">
     <div>ROOM COMPONENT START</div>
     <div class="text-h6">Chambre</div>
-    <div>{{room}}</div>
+    <div>{{data}}</div>
     <div>ROOM COMPONENT END</div>
     <hr>
     <!--
@@ -26,7 +26,7 @@ export default
   name: "room",
   props:
   {
-      room:  { type: Object, required: true }
+      data:  { type: Object, required: true }
   },
 }
 </script>
