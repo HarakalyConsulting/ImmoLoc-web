@@ -9,7 +9,7 @@
         lastName: '',
         rue: '',
         codePostal: '',
-        ville: '',
+        town: '',
         pays: 'France',
         iban: "",
         dragAndDropCapable: false,
