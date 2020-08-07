@@ -1,9 +1,10 @@
 <template class="Room">
   <section :class="data.color">
     <div>ROOM COMPONENT START</div>
-    <div class="text-h6">Chambre</div>
+    <div class="text-h6">Chambre {{data.id}} </div>
     <div>{{data}}</div>
     <div>ROOM COMPONENT END</div>
+    <q-input label="Porte" v-model="data.id"/>
     <hr>
     <!--
     <div class="q-gutter-md row items-start">
