@@ -2,12 +2,16 @@
   <q-page class="q-mt-lg q-pa-md bg-grey-2">
     <div>
       <div class="text-h6">Appartement</div>
-      <div class="q-pa-md" style="max-width: 300px">
-        <div class="q-gutter-md">
+<!--      <div class="q-pa-md" >-->
+        <div class="q-gutter-md" >
           <q-select v-model="model" :options="options" label="Type"
-                    @click="typeSelect"/>
-        </div>
+                    @click="typeSelect" style="max-width: 300px"/>
+<!--        </div>-->
 
+        <div v-if="model === 'outre'" class="q-mt-md bg-grey-5">
+          <q-input v-model="text" label="Standard" />
+        </div>
+      </div>
 
         <div class="q-pa-md" style="max-width: 350px">
             <q-list highlight bordered separator :padding="true">
@@ -22,17 +26,15 @@
                 active-class="text-orange-10 mnu_active"
                 class="q-pb-md"
               ></q-item>
+              <room/>
           </q-list>
 
-          <div v-if="model === 'outre'" class="q-mt-md bg-grey-5">
-            --- OUTRE FIELD HERE ---
-          </div>
 
         </div>
 
 
       </div>
-    </div>
+<!--    </div>-->
   </q-page>
 </template>
 
