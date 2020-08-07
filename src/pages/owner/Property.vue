@@ -13,7 +13,8 @@
         </div>
       </div>
 
-        <div class="q-pa-md" style="max-width: 350px">
+        <div class="q-pa-md bg-yellow" style="max-width: 350px">
+            <!--
             <q-list highlight bordered separator :padding="true">
               <q-item
                 highlight
@@ -28,6 +29,12 @@
               ></q-item>
               <room/>
           </q-list>
+          -->
+
+
+          <div v-for="(room, index) in plans.data" :key="index">
+              <room-component :room="room"></room-component>
+          </div>
 
 
         </div>
@@ -39,7 +46,15 @@
 </template>
 
 <script>
-export default {
+
+import roomComponent from 'components/room.vue';
+
+export default
+{
+  components:
+  {
+    'room-component': roomComponent
+  },
   methods:{
     typeSelect(){}
   },
@@ -52,7 +67,11 @@ export default {
         'Studio', 'T1', 'T2', 'T3', 'T4', 'T5', 'outre'
       ],
       plans:{
-        data:['q','w'],
+        data: [
+          {id: 1, label: 'Room-1', color: 'bg-red'},
+          {id: 2, label: 'Room-2', color: 'bg-green'},
+          {id: 3, label: 'Room-3', color: 'bg-blue'}
+          ],
         id:0,
       }
     }
