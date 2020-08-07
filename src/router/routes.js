@@ -29,12 +29,6 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', component: () => import('pages/register.vue') }]
   },
-
-  {
-    path: '/owner/property',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/owner/Property.vue') }]
-  },
   // Always leave this as last one
   {
     path: '*',
