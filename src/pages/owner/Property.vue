@@ -9,13 +9,11 @@
         <q-input label="Post Code" v-model="app.codePostal"/>
         <q-input label="Ville" v-model="app.town"/>
         <q-input label="Pays" v-model="app.country"/>
-      </div>
 
-      <div class="q-gutter-md">
-        <q-select v-model="model" :options="options" label="Type"
-                  @click="typeSelect" style="max-width: 300px"/>
+        <q-select label="Type" v-model="model" :options="options"
+                  @click="typeSelect" style="min-width: 100px"/>
 
-        <div v-if="model === 'outre'" class="q-mt-md bg-grey-5">
+        <div v-if="model === 'outre'" class="q-mt-md bg-grey-2">
           <q-input v-model="model" type="number" label="Nombre des chambres"/>
         </div>
       </div>
