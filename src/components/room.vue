@@ -11,19 +11,10 @@
 </template>
 
 <script>
-export default
-{
+export default {
   name: "room",
-  props:
-  {
+  props: {
       data:  { type: Object, required: true }
-  },
-  types:[{name:'studio',rooms:1},
-    {name:'T1',rooms:2},
-    {name:'T2',rooms:3},
-    {name:'T3',rooms:4},
-    {name:'T4',rooms:5},
-    {name:'T5',rooms:6}
-  ]
+  }
 }
 </script>

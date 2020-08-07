@@ -26,10 +26,10 @@
 
 
       <div class="q-pa-md bg-yellow">
-        <div>{{model.rooms}}</div>
-        <div v-for="room in model.rooms" :key="index">
-          <room-component :data="room"></room-component>
-        </div>
+<!--        <div>{{$this.rooms(model)}}</div>-->
+<!--        <div v-for="room in model.substring(1)" :key="index">-->
+<!--          <room-component :data="room"></room-component>-->
+<!--        </div>-->
 
       </div>
 
