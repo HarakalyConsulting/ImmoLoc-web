@@ -10,8 +10,6 @@
 
 
         <div class="q-pa-md" style="max-width: 350px">
-
-
             <q-list highlight bordered separator :padding="true">
               <q-item
                 highlight
@@ -24,9 +22,11 @@
                 active-class="text-orange-10 mnu_active"
                 class="q-pb-md"
               ></q-item>
-
-
           </q-list>
+
+          <div v-if="model === 'outre'" class="q-mt-md bg-grey-5">
+            --- OUTRE FIELD HERE ---
+          </div>
 
         </div>
 
