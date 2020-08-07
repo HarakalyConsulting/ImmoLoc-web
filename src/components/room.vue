@@ -2,22 +2,11 @@
   <section :class="data.color">
     <div>ROOM COMPONENT START</div>
     <div class="text-h6">Chambre {{data.id}} </div>
-    <div>{{data}}</div>
-    <div>ROOM COMPONENT END</div>
-    <q-input label="Porte" v-model="data.id"/>
-    <hr>
-    <!--
-    <div class="q-gutter-md row items-start">
-      <q-input label="Porte" v-model="a.rue"/>
-      <q-input label="Fenetre" v-model="a.codePostal"/>
-      <q-input label="Plafond" v-model="a.ville"/>
-      <q-input label="Sol" v-model="a.pays"/>
-      <q-input label="Mur 1" v-model="a.pays"/>
-      <q-input label="Mur 2" v-model="a.pays"/>
-      <q-input label="Mur 3" v-model="a.pays"/>
-      <q-input label="Mur 4" v-model="a.pays"/>
+    <div v-for="value in data">
+      <div>{{value}}</div>
     </div>
-    -->
+    <div>ROOM COMPONENT END</div>
+    <hr>
   </section>
 </template>
 
@@ -29,9 +18,12 @@ export default
   {
       data:  { type: Object, required: true }
   },
+  types:[{name:'studio',rooms:1},
+    {name:'T1',rooms:2},
+    {name:'T2',rooms:3},
+    {name:'T3',rooms:4},
+    {name:'T4',rooms:5},
+    {name:'T5',rooms:6}
+  ]
 }
 </script>
-
-<style scoped>
-
-</style>

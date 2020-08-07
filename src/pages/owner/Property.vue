@@ -16,13 +16,18 @@
                   @click="typeSelect" style="max-width: 300px"/>
 
         <div v-if="model === 'outre'" class="q-mt-md bg-grey-5">
-          <q-input v-model="number" type="number" label="Nombre des chambres"/>
+          <q-input v-model="model" type="number" label="Nombre des chambres"/>
         </div>
       </div>
 
-      <div class="q-pa-md bg-yellow">
 
-        <div v-for="(room, index) in plans.data" :key="index">
+
+
+
+
+      <div class="q-pa-md bg-yellow">
+        <div>{{model.rooms}}</div>
+        <div v-for="room in model.rooms" :key="index">
           <room-component :data="room"></room-component>
         </div>
 
@@ -56,6 +61,16 @@ export default {
         town: '',
         country: 'France'
       },
+      room:{
+        door:"",
+        window:"",
+        roof:"",
+        floor:"",
+        wallA:"",
+        wallB:"",
+        wallC:"",
+        wallD:""
+      },
       options: [
         'Studio', 'T1', 'T2', 'T3', 'T4', 'T5', 'outre'
       ],
@@ -71,7 +86,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>
