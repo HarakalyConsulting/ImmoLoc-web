@@ -10,6 +10,11 @@ const routes = [
     children: [{ path: '', component: () => import('pages/owner/Profile.vue') }]
   },
   {
+    path: '/owner/property',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/owner/Property.vue') }]
+  },
+  {
     path: '/lodger/profile',
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', component: () => import('pages/lodger/Profile.vue') }]
