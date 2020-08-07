@@ -17,20 +17,31 @@
           <q-input v-model="model" type="number" label="Nombre des chambres"/>
         </div>
       </div>
+      <div class="text-h6">Description des lieux</div>
 
 
 
-
-
-
-      <div class="q-pa-md bg-yellow">
-<!--        <div>{{$this.rooms(model)}}</div>-->
-<!--        <div v-for="room in model.substring(1)" :key="index">-->
-<!--          <room-component :data="room"></room-component>-->
-<!--        </div>-->
-
+      <div class="q-pa-md bg-yellow" style="max-width: 350px">
+        <div v-for="r in rooms" :key="index">
+          <room-component :data="r" ></room-component>
+        </div>
       </div>
 
+      <q-btn
+        color="primary"
+        icon="warning"
+        label="Abandon"
+        to="/"
+        class="q-ma-md"
+      ></q-btn>
+      <q-btn
+        color="red"
+        icon="error"
+        label="Enregister"
+        @click="save"
+        :loading="Submitting"
+        class="q-ma-md"
+      ></q-btn>
     </div>
   </q-page>
 </template>
@@ -47,7 +58,6 @@ export default {
     typeSelect() {
     }
   },
-
   data() {
     return {
       name: "Property",
@@ -59,7 +69,23 @@ export default {
         town: '',
         country: 'France'
       },
+      rooms:[
+        {
+          name:"Cuisine",
+          door:"444",
+          window:"",
+          roof:"",
+          floor:"",
+          wallA:"",
+          wallB:"",
+          wallC:"",
+          wallD:""
+        },{name:"WC"},
+        {name:"toilette"},
+        {name:"couloir"}
+      ],
       room:{
+        name:"",
         door:"",
         window:"",
         roof:"",

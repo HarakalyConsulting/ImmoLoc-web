@@ -1,11 +1,9 @@
 <template class="Room">
-  <section :class="data.color">
-    <div>ROOM COMPONENT START</div>
-    <div class="text-h6">Chambre {{data.id}} </div>
-    <div v-for="value in data">
-      <div>{{value}}</div>
+  <section :class="data.id" style="max-width: 350px">
+    <div class="text-h6" >Chambre {{data.name}} </div>
+    <div v-for="(value, name) in data">
+      <q-input v-bind:label="name" v-model="avalue"/>
     </div>
-    <div>ROOM COMPONENT END</div>
     <hr>
   </section>
 </template>
