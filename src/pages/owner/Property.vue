@@ -60,45 +60,44 @@ export default {
   methods: {
     typeSelect() {
     },
-    rooms: function (n) {
+    rooms(n) {
       let i;
       let r = [];
 
-      for (i = 0; i < n; i++) {
-        r.push({...roomComponent.room, name: "Chambre" + i});
+      for (i = n; i > 0; i--) {
+        r.push({...roomComponent.room, name: "Chambre " + i});
       }
 
       r += [
-          {...roomComponent.room, name: "Cuisine"},
-          {...roomComponent.room, name: "WC"},
-          {...roomComponent.room, name: "SdB/SdE"},
-          {...roomComponent.room, name: "Toilette"},
-          {...roomComponent.room, name: "Couloir"}];
+        {...roomComponent.room, name: "Cuisine"},
+        {...roomComponent.room, name: "WC"},
+        {...roomComponent.room, name: "SdB/SdE"},
+        {...roomComponent.room, name: "Toilette"},
+        {...roomComponent.room, name: "Couloir"}];
       return r;
     },
-
-    data() {
-      return {
-        name: "Property",
-        model: null,
-        app: {
-          name: '',
-          street: '',
-          codePostal: '',
-          town: '',
-          country: 'France'
-        },
-        options: [
-          'Studio', 'T1', 'T2', 'T3', 'T4', 'T5', 'outre'
+  },
+  data() {
+    return {
+      name: "Property",
+      model: null,
+      app: {
+        name: '',
+        street: '',
+        codePostal: '',
+        town: '',
+        country: 'France'
+      },
+      options: [
+        'Studio', 'T1', 'T2', 'T3', 'T4', 'T5', 'outre'
+      ],
+      plans: {
+        data: [
+          {id: 1, label: 'Room-1', color: 'bg-red'},
+          {id: 2, label: 'Room-2', color: 'bg-green'},
+          {id: 3, label: 'Room-3', color: 'bg-blue'}
         ],
-        plans: {
-          data: [
-            {id: 1, label: 'Room-1', color: 'bg-red'},
-            {id: 2, label: 'Room-2', color: 'bg-green'},
-            {id: 3, label: 'Room-3', color: 'bg-blue'}
-          ],
-          id: 0,
-        }
+        id: 0,
       }
     }
   }
