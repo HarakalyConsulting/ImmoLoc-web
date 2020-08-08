@@ -11,16 +11,8 @@
 <script>
 export default {
   name: "room",
-  room:{
-    name:"",
-    door:"",
-    window:"",
-    roof:"",
-    floor:"",
-    wallA:"",
-    wallB:"",
-    wallC:"",
-    wallD:""
+  room:{name:"", door:"", window:"", plafond:"", floor:"",
+    wallA:"", wallB:"", wallC:"", wallD:""
   },
   props: {
       data:  { type: Object, required: true }
