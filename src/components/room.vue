@@ -1,6 +1,6 @@
 <template class="Room">
   <section :class="data.id" style="max-width: 350px">
-    <div class="text-h6" >Chambre {{data.name}} </div>
+    <div class="text-h6" >{{data.name}} </div>
     <div v-for="(value, name) in data">
       <q-input v-bind:label="name" v-model="avalue"/>
     </div>
@@ -11,6 +11,17 @@
 <script>
 export default {
   name: "room",
+  room:{
+    name:"",
+    door:"",
+    window:"",
+    roof:"",
+    floor:"",
+    wallA:"",
+    wallB:"",
+    wallC:"",
+    wallD:""
+  },
   props: {
       data:  { type: Object, required: true }
   }

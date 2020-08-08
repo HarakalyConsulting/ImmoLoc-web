@@ -17,13 +17,16 @@
           <q-input v-model="model" type="number" label="Nombre des chambres"/>
         </div>
       </div>
+
+      <!--   TODO:   wait for input, should render when number of rooms known-->
+      <!--           or render standard "rooms" like kitchen and rooms add -->
+      <!--           dynamically when known -->
+
       <div class="text-h6">Description des lieux</div>
 
-
-
       <div class="q-pa-md bg-yellow" style="max-width: 350px">
-        <div v-for="r in rooms" :key="index">
-          <room-component :data="r" ></room-component>
+        <div v-for="r in rooms(3)" :key="index">
+          <room-component :data="r"></room-component>
         </div>
       </div>
 
@@ -56,55 +59,46 @@ export default {
   },
   methods: {
     typeSelect() {
-    }
-  },
-  data() {
-    return {
-      name: "Property",
-      model: null,
-      app: {
-        name: '',
-        street: '',
-        codePostal: '',
-        town: '',
-        country: 'France'
-      },
-      rooms:[
-        {
-          name:"Cuisine",
-          door:"444",
-          window:"",
-          roof:"",
-          floor:"",
-          wallA:"",
-          wallB:"",
-          wallC:"",
-          wallD:""
-        },{name:"WC"},
-        {name:"toilette"},
-        {name:"couloir"}
-      ],
-      room:{
-        name:"",
-        door:"",
-        window:"",
-        roof:"",
-        floor:"",
-        wallA:"",
-        wallB:"",
-        wallC:"",
-        wallD:""
-      },
-      options: [
-        'Studio', 'T1', 'T2', 'T3', 'T4', 'T5', 'outre'
-      ],
-      plans: {
-        data: [
-          {id: 1, label: 'Room-1', color: 'bg-red'},
-          {id: 2, label: 'Room-2', color: 'bg-green'},
-          {id: 3, label: 'Room-3', color: 'bg-blue'}
+    },
+    rooms: function (n) {
+      let i;
+      let r = [];
+
+      for (i = 0; i < n; i++) {
+        r.push({...roomComponent.room, name: "Chambre" + i});
+      }
+
+      r += [
+          {...roomComponent.room, name: "Cuisine"},
+          {...roomComponent.room, name: "WC"},
+          {...roomComponent.room, name: "SdB/SdE"},
+          {...roomComponent.room, name: "Toilette"},
+          {...roomComponent.room, name: "Couloir"}];
+      return r;
+    },
+
+    data() {
+      return {
+        name: "Property",
+        model: null,
+        app: {
+          name: '',
+          street: '',
+          codePostal: '',
+          town: '',
+          country: 'France'
+        },
+        options: [
+          'Studio', 'T1', 'T2', 'T3', 'T4', 'T5', 'outre'
         ],
-        id: 0,
+        plans: {
+          data: [
+            {id: 1, label: 'Room-1', color: 'bg-red'},
+            {id: 2, label: 'Room-2', color: 'bg-green'},
+            {id: 3, label: 'Room-3', color: 'bg-blue'}
+          ],
+          id: 0,
+        }
       }
     }
   }
