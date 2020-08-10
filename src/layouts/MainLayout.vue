@@ -51,8 +51,8 @@ export default {
           aria-label="Menu"
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
-        <q-toolbar-title>APP --- {{toolbarMessage}}</q-toolbar-title>
-        <div>Quasar v{{ $name }}</div>
+        <q-toolbar-title>APP --- </q-toolbar-title>
+        <div>Bianvenu {{toolbarMessage}}</div>
       </q-toolbar>
     </q-header>
 

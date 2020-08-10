@@ -37,6 +37,7 @@
         to="/"
         class="q-ma-md"
       ></q-btn>
+
       <q-btn
         color="red"
         icon="error"
@@ -51,7 +52,7 @@
 
 <script>
 
-import roomComponent from 'components/room.vue';
+import roomComponent from 'components/room.vue'
 
 export default {
   components: {

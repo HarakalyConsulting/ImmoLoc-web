@@ -2,14 +2,14 @@
 const store = {namespaced: true};
 
 store.state = {
-    toolbarMessage: 'INITIAL VALUE'
+    toolbarMessage: ''
 };
 
 store.getters = {
 
     getToolbarMessage: function(state)
     {
-        return state.toolbarMessage + ' (+some text)';
+        return state.toolbarMessage;
     }
 
 };

@@ -3,10 +3,20 @@ export default {
   name: 'Login',
   methods: {
     signIn() {
-      this.$axios.post('http://localhost:8888/api/v1/auth/login', this.form).then(response => {
-        alert("jjjjjjjjjjjj");
+      this.$axios.post('http://localhost:8888/api/v1/auth/login', this.form)
+        .then(response => {
         this.$router.push(this.usertype + '/../profile');
-      })
+          // { "data": { "name": "Robert Harakaly", "id": 823754,
+          // "token": "hskghfiruegbsmbsjhbir34y3hb" }, "status": 200, "statusText": "OK",
+          // "headers": { "content-length": "76", "content-type": "application/json;
+          // charset=utf-8" }, "config": { "url": "http://localhost:8888/api/v1/auth/login",
+          // "method": "post", "data": "{\"email\":\"dd\",\"username\":\"\",\"password\":\"dd\"}",
+          // "headers": { "Accept": "application/json, text/plain, */*", "Content-Type":
+          // "application/json;charset=utf-8" }, "transformRequest": [ null ],
+          // "transformResponse": [ null ], "timeout": 0, "xsrfCookieName": "XSRF-TOKEN",
+          // "xsrfHeaderName": "X-XSRF-TOKEN", "maxContentLength": -1 }, "request": {} }
+        this.$store.commit('main/toolbarMessage', response.data.name);
+      }).catch(err => alert("User doesn't exist:" + err));
     },
   },
   data() {

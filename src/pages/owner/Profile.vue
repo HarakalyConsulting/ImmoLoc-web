@@ -82,9 +82,9 @@ export default {
 
 
     save({commit}, a) {
-      this.$store.commit('main/toolbarMessage', 'NEW VALUE!');
-
-      alert('Donnees enregistrees')
+      // this.$store.commit('main/toolbarMessage', 'NEW VALUE!');
+      //
+      // alert('Donnees enregistrees')
 
       this.$axios
         .post('http://localhost:8888/api/v1/auth/register', form)
