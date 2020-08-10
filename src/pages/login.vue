@@ -2,32 +2,22 @@
 export default {
   name: 'Login',
   methods: {
-    signIn: function () {
+    signIn() {
       this.$axios.post('http://localhost:8888/api/v1/auth/login', this.form).then(response => {
         alert("jjjjjjjjjjjj");
         this.$router.push(this.usertype + '/../profile');
       })
     },
-
-
-    //   setAxiosHeaders(response.data.token)
-    //};
-    // .catch(err => {
-    //         alert(err);
-    //       });
-
-    //window.location.href = this.usertype + '/profile'
-    //   }),
-    },
-    data() {
-      return {
-        usertype: '',
-        form: {email: '', username: '', password: ''}
-      };
-    },
-    created() {
-      this.usertype = this.$route.params.usertype;
-    }
+  },
+  data() {
+    return {
+      usertype: '',
+      form: {email: '', username: '', password: ''}
+    };
+  },
+  created() {
+    this.usertype = this.$route.params.usertype;
+  }
 }
 </script>
 
