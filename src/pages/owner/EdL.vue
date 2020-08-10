@@ -20,8 +20,16 @@
 </template>
 
 <script>
+// this.usertype = this.$route.params.id;
+load: {
+
+}
+save: {
+
+}
 export default {
   name: "EdL",
+  model: "",
   props: {
     data: {type: Object, required: true}
   }

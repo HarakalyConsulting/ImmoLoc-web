@@ -1,30 +1,34 @@
 <script>
-  export default {
-    name: 'Login',
-    methods: {
-      signIn: function () {
-        this.$axios.post('http://localhost:8888/api/v1/auth/login', form).then(response => {
-          console.log(response.data)
-          setAxiosHeaders(response.data.token)
-        }).catch(err => {
-          console.error(err)
-        });
+export default {
+  name: 'Login',
+  methods: {
+    signIn: function () {
+      this.$axios.post('http://localhost:8888/api/v1/auth/login', this.form).then(response => {
+        alert("jjjjjjjjjjjj");
+        this.$router.push(this.usertype + '/../profile');
+      })
+    },
 
-        window.location.href = this.usertype + '/Profile'
-      }
+
+    //   setAxiosHeaders(response.data.token)
+    //};
+    // .catch(err => {
+    //         alert(err);
+    //       });
+
+    //window.location.href = this.usertype + '/profile'
+    //   }),
     },
     data() {
       return {
         usertype: '',
-        email: '',
-        username: '',
-        password: ''
+        form: {email: '', username: '', password: ''}
       };
     },
     created() {
       this.usertype = this.$route.params.usertype;
     }
-  }
+}
 </script>
 
 <template>
@@ -36,25 +40,27 @@
       <div class="row">
         <q-card square class="shadow-24" style="width:300px;height:485px;">
           <q-card-section class="bg-deep-purple-7">
-            <h4 class="text-h5 text-white q-my-md">Company - {{usertype}}</h4>
+            <h4 class="text-h5 text-white q-my-md">Company - {{ usertype }}</h4>
             <div class="absolute-bottom-right q-pr-md" style="transform: translateY(50%);">
               <q-btn fab icon="add" color="purple-4"/>
             </div>
           </q-card-section>
+
           <q-card-section>
             <q-form class="q-px-sm q-pt-xl">
-              <q-input square clearable v-model="email" type="email" label="Email">
+              <q-input square clearable v-model="form.email" type="email" label="Email">
                 <template v-slot:prepend>
                   <q-icon name="email"/>
                 </template>
               </q-input>
-              <q-input square clearable v-model="password" type="password" label="Password">
+              <q-input square clearable v-model="form.password" type="password" label="Password">
                 <template v-slot:prepend>
                   <q-icon name="lock"/>
                 </template>
               </q-input>
             </q-form>
           </q-card-section>
+
           <q-card-section>
             <div class="text-center q-pa-md q-gutter-md">
               <q-btn round color="indigo-7">
@@ -68,9 +74,11 @@
               </q-btn>
             </div>
           </q-card-section>
+
           <q-card-actions class="q-px-lg">
             <q-btn unelevated size="lg" color="purple-4" class="full-width text-white" label="Sign In" @click="signIn"/>
           </q-card-actions>
+
           <q-card-section class="text-center q-pa-sm">
             <a class="text-grey-6" href="register">Forgot your password?</a>
           </q-card-section>

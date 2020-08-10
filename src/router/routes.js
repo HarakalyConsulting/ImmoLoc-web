@@ -15,7 +15,7 @@ const routes = [
     children: [{ path: '', component: () => import('pages/owner/Property.vue') }]
   },
   {
-    path: '/owner/edl',
+    path: '/owner/edl/:id',
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', component: () => import('pages/owner/EdL.vue') }]
   },
