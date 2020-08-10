@@ -24,7 +24,7 @@
       <div class="q-pa-sm">
         <q-table
           title="Proprietes"
-          :data="tabledata"
+          :data="list"
           :columns="columns"
           row-key="name"
         >
@@ -65,21 +65,22 @@ export default {
         firstName: '', lastName: '', rue: '', codePostal: '', ville: '', pays: 'France', iban: ''
       },
       columns: [
-        { name: 'name', field: 'name', required: true, label: 'Nom', align: 'left', sortable: true},
-        { name: 'contract', field: 'contract', align: 'center', label: 'Contrat', sortable: true},
-        { name: 'loue', field: 'loue', align: 'center', label: 'Loue', sortable: true},
-        { name: 'actions', label: 'Actions', field: '', align:'center' },
-      ],
-      tabledata: [{name: 'aaa', contract: 'A1234432', loue: 'no'}],
+        {name: 'name', field: 'name', required: true, label: 'Nom', align: 'left', sortable: true},
+        {name: 'contract', field: 'contract', align: 'center', label: 'Contrat', sortable: true},
+        {name: 'loue', field: 'loue', align: 'center', label: 'Loue', sortable: true},
+        {name: 'actions', label: 'Actions', field: '', align: 'center'},
+      ]
       // build function with a call to blockchain to get list of contracts
     }
   },
   methods: {
     editRow(props) {
       //  Call edl with parameter of line (type room) that was clocked
-      window.location.href = "/edl"
+      window.location.href = "/edl/" + userId;
     },
-
+    list() {
+      return [{name: 'aaa', contract: 'A1234432', loue: 'no'}];
+    },
 
     save({commit}, a) {
       // this.$store.commit('main/toolbarMessage', 'NEW VALUE!');
@@ -96,6 +97,23 @@ export default {
           setAxiosHeaders(response.data.token)
         })
     }
+  },
+  created() {
+    //  take id from the path
+    this.userId = this.$route.params.id;
+    //  load user data at opening of the page ....
+    this.$axios.get('http://localhost:8888/api/v1/user/' + id)
+      .then(response => {
+        //  get propertys list
+        if (owner) {
+          this.$axios.get('http://localhost:8888/api/v1/owner/property/list/' + id)
+            .then(list => {
+            })
+            .catch(err => {
+            })
+        }
+      })
+      .catch(err => alert(err));
   }
 }
 </script>
