@@ -106,15 +106,16 @@ export default {
     this.$axios.get('http://localhost:8888/api/v1/user/' + userId)
       .then(response => {
 
-        this.a.firstName = '';
-        this.a.lastName = '';
+        this.a.firstName = response.data.name;
+        this.a.lastName = response.data.lastName;
 
-        //  get propertis list
-        this.list = response.data;
         //if (owner === 'owner') {
         //      if (true) {
         this.$axios.get('http://localhost:8888/api/v1/owner/property/list/' + userId)
           .then(list => {
+            //  get propertis list
+            this.list = list.data.list;
+
             //  render properties list
           })
         //    }
