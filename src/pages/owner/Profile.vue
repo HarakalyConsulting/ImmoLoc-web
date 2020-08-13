@@ -115,10 +115,7 @@ export default {
           .then(list => {
             //  get propertis list
             this.list = list.data.list;
-
-            //  render properties list
           })
-        //    }
       })
       .catch(err => {
         alert(err);

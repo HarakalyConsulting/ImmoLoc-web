@@ -10,7 +10,7 @@ const routes = [
     children: [{ path: '', component: () => import('pages/owner/Profile.vue') }]
   },
   {
-    path: '/owner/property',
+    path: '/owner/property/:id',
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', component: () => import('pages/owner/Property.vue') }]
   },

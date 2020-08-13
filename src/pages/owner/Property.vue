@@ -18,34 +18,32 @@
         </div>
       </div>
 
-      <!--   TODO:   wait for input, should render when number of rooms known-->
-      <!--           or render standard "rooms" like kitchen and rooms add -->
-      <!--           dynamically when known -->
+      <div v-if="model != null" disabled="this.descriptionDisabled">
+        <div class="text-h6">Description des lieux</div>
 
-      <div class="text-h6">Description des lieux</div>
-
-      <div class="q-pa-md bg-yellow" style="max-width: 350px">
-        <div v-for="r in rooms(3)" :key="index">
-          <room-component :data="r"></room-component>
+        <div class="q-pa-md bg-yellow" style="max-width: 350px">
+          <div v-for="r in rooms(3)" :key="index">
+            <room-component :data="r"></room-component>
+          </div>
         </div>
+
+        <q-btn
+          color="primary"
+          icon="warning"
+          label="Abandon"
+          to="/"
+          class="q-ma-md"
+        ></q-btn>
+
+        <q-btn
+          color="red"
+          icon="error"
+          label="Enregister"
+          @click="save"
+          :loading="Submitting"
+          class="q-ma-md"
+        ></q-btn>
       </div>
-
-      <q-btn
-        color="primary"
-        icon="warning"
-        label="Abandon"
-        to="/"
-        class="q-ma-md"
-      ></q-btn>
-
-      <q-btn
-        color="red"
-        icon="error"
-        label="Enregister"
-        @click="save"
-        :loading="Submitting"
-        class="q-ma-md"
-      ></q-btn>
     </div>
   </q-page>
 </template>
@@ -59,6 +57,11 @@ export default {
     'room-component': roomComponent
   },
   methods: {
+    commit(r) {
+      this.$axios.post('http://localhost:8888/api/v1/owner/property/add', r)
+        .then(result => alert("Property succesfully stored"))
+        .catch(err => alert(err))
+    },
     typeSelect() {
     },
     rooms(n) {
@@ -80,16 +83,9 @@ export default {
     return {
       name: "Property",
       model: null,
-      app: {
-        name: '',
-        street: '',
-        codePostal: '',
-        town: '',
-        country: 'France'
-      },
-      options: [
-        'Studio', 'Chambre', 'T1', 'T2', 'T3', 'T4', 'T5', 'outre'
-      ],
+      descriptionDisabled: true,
+      app: {name: '', street: '', codePostal: '', town: '', country: 'France'},
+      options: ['Studio', 'Chambre', 'T1', 'T2', 'T3', 'T4', 'T5', 'outre'],
     }
   }
 }
