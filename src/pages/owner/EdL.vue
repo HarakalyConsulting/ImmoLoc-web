@@ -21,17 +21,38 @@
 
 <script>
 // this.usertype = this.$route.params.id;
-load: {
 
-}
-save: {
-
-}
 export default {
   name: "EdL",
   model: "",
   props: {
     data: {type: Object, required: true}
+  },
+  methods:{
+    load: {
+
+    },
+    save: {
+
+    }
+  },
+  created() {
+    //  take EDL id from the path
+    this.userId = this.$route.params.id;
+    //  load user data at opening of the page ....
+    this.$axios.get('http://localhost:8888/api/v1/user/' + id)
+      .then(response => {
+        //  get propertis list
+        this.list = response.data;
+        if (owner) {
+          this.$axios.get('http://localhost:8888/api/v1/owner/property/list/' + id)
+            .then(list => {
+            })
+            .catch(err => {
+            })
+        }
+      })
+      .catch(err => alert(err));
   }
 }
 </script>

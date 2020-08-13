@@ -5,7 +5,7 @@ const routes = [
     children: [{ path: '', component: () => import('pages/Index.vue') }]
   },
   {
-    path: '/owner/profile/%id',
+    path: '/owner/profile/:id',
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', component: () => import('pages/owner/Profile.vue') }]
   },
@@ -20,7 +20,7 @@ const routes = [
     children: [{ path: '', component: () => import('pages/owner/EdL.vue') }]
   },
   {
-    path: '/lodger/profile/%id',
+    path: '/lodger/profile/:id',
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', component: () => import('pages/lodger/Profile.vue') }]
   },

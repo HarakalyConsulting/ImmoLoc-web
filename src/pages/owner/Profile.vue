@@ -3,8 +3,8 @@
     <div>
       <div class="text-h6">Profile proprietaire</div>
       <div class="q-gutter-md row items-start">
-        <q-input label="Nom" v-model="a.lastName"/>
-        <q-input label="Prenom" v-model="a.firstName"/>
+        <q-input label="Nom" v-model="a.lastName" readonly/>
+        <q-input label="Prenom" v-model="a.firstName" readonly/>
       </div>
 
       <div class="text-h6">Address</div>
@@ -69,17 +69,14 @@ export default {
         {name: 'contract', field: 'contract', align: 'center', label: 'Contrat', sortable: true},
         {name: 'loue', field: 'loue', align: 'center', label: 'Loue', sortable: true},
         {name: 'actions', label: 'Actions', field: '', align: 'center'},
-      ]
-      // build function with a call to blockchain to get list of contracts
+      ],
+      list: []
     }
   },
   methods: {
     editRow(props) {
-      //  Call edl with parameter of line (type room) that was clocked
-      window.location.href = "/edl/" + userId;
-    },
-    list() {
-      return [{name: 'aaa', contract: 'A1234432', loue: 'no'}];
+      //  Call edl with parameter of line (type room) that was clicked
+      window.location.href = "/edl/" + propertyId;
     },
 
     save({commit}, a) {
@@ -98,22 +95,34 @@ export default {
         })
     }
   },
+  debug(e) {
+    console.log(e)
+  },
   created() {
     //  take id from the path
-    this.userId = this.$route.params.id;
+    let userId = this.$route.params.id;
+
     //  load user data at opening of the page ....
-    this.$axios.get('http://localhost:8888/api/v1/user/' + id)
+    this.$axios.get('http://localhost:8888/api/v1/user/' + userId)
       .then(response => {
-        //  get propertys list
-        if (owner) {
-          this.$axios.get('http://localhost:8888/api/v1/owner/property/list/' + id)
-            .then(list => {
-            })
-            .catch(err => {
-            })
-        }
+
+        this.a.firstName = '';
+        this.a.lastName = '';
+
+        //  get propertis list
+        this.list = response.data;
+        //if (owner === 'owner') {
+        //      if (true) {
+        this.$axios.get('http://localhost:8888/api/v1/owner/property/list/' + userId)
+          .then(list => {
+            //  render properties list
+          })
+        //    }
       })
-      .catch(err => alert(err));
+      .catch(err => {
+        alert(err);
+        this.list = [];
+      });
   }
 }
 </script>
