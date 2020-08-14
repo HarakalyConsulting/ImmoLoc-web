@@ -1,14 +1,14 @@
 <template>
   <q-page class="q-mt-lg q-pa-md bg-grey-2">
     <div>
-      <div class="text-h6">Appartement</div>
+      <div class="text-h6">address</div>
       <div class="q-gutter-md row items-start">
-        <q-input label="Nom" v-model="app.name"/>
+        <q-input label="Nom" v-model="address.name"/>
         <!--  TODO:      new line here .... -->
-        <q-input label="Rue" v-model="app.street"/>
-        <q-input label="Post Code" v-model="app.codePostal"/>
-        <q-input label="Ville" v-model="app.town"/>
-        <q-input label="Pays" v-model="app.country"/>
+        <q-input label="Rue" v-model="address.street"/>
+        <q-input label="Post Code" v-model="address.codePostal"/>
+        <q-input label="Ville" v-model="address.town"/>
+        <q-input label="Pays" v-model="address.country"/>
 
         <q-select label="Type" v-model="model" :options="options"
                   @click="typeSelect" style="min-width: 100px"/>
@@ -22,7 +22,7 @@
         <div class="text-h6">Description des lieux</div>
 
         <div class="q-pa-md bg-yellow" style="max-width: 350px">
-          <div v-for="r in rooms(3)" :key="index">
+          <div v-for="r in rooms()" :key="index">
             <room-component :data="r"></room-component>
           </div>
         </div>
@@ -64,18 +64,26 @@ export default {
     },
     typeSelect() {
     },
-    rooms(n) {
-      let i;
+    rooms() {
+      let i, n;
       let r = [];
-
-      for (i = 1; i <= n; i++) {
-        r.push({...roomComponent.room, name: "Chambre " + i});
+      if (this.model === 'Chambre') {
+        r.push({...roomComponent.room, name: "Chambre"});
+      } else {
+        if (this.model === 'Studio') {
+          n = 1;
+        } else {
+          n = this.model.substring(1)
+        }
+        for (i = 1; i <= n; i++) {
+          r.push({...roomComponent.room, name: "Chambre " + i});
+        }
+        r.push({...roomComponent.room, name: "Cuisine"});
+        r.push({...roomComponent.room, name: "WC"});
+        r.push({...roomComponent.room, name: "SdB/SdE"});
+        r.push({...roomComponent.room, name: "Toilette"});
+        r.push({...roomComponent.room, name: "Couloir"});
       }
-      r.push({...roomComponent.room, name: "Cuisine"});
-      r.push({...roomComponent.room, name: "WC"});
-      r.push({...roomComponent.room, name: "SdB/SdE"});
-      r.push({...roomComponent.room, name: "Toilette"});
-      r.push({...roomComponent.room, name: "Couloir"});
       return r;
     },
   },
@@ -84,7 +92,7 @@ export default {
       name: "Property",
       model: null,
       descriptionDisabled: true,
-      app: {name: '', street: '', codePostal: '', town: '', country: 'France'},
+      address: {name: '', street: '', codePostal: '', town: '', country: 'France'},
       options: ['Studio', 'Chambre', 'T1', 'T2', 'T3', 'T4', 'T5', 'outre'],
     }
   }

@@ -5,6 +5,12 @@ const state = {
   token: localStorage.getItem('user-token') || '',
   status: ''
 }
+
+// method: 'POST',
+//   headers: [
+//   { name: 'Authorization', value: `Bearer ${token}` } ]
+
+
 const getters = {
   isAuthenticated: state => !!state.token,
   authStatus: state => state.status,
