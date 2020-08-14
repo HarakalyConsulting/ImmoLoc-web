@@ -1,20 +1,31 @@
 <template>
-  <!--  <section :class="edl" style="max-width: 350px">-->
   <q-page class="q-mt-lg q-pa-md bg-grey-2">
     <div>
-      <div class="text-h6">Etats des Lieux</div>
+      <div class="text-h5">Etats des Lieux</div>
       <div class="q-gutter-md col items-start">
         <div v-for="r in this.edl">
-          <div v-for="(value, name) in r">
-            <q-select v-bind:label="name" v-model="r.value" :options="options"
-                      @click="typeSelect" style="min-width: 100px"/>
-          </div>
-        </div>
+          <template>
+            <div class="row">
+              <div class="self-center full-width text-h6 no-outline" tabindex="0" style="min-width: 100px">{{
+                  r.name
+                }}
+              </div>
+              <div v-for="l in r.findings">
+                <div class="row">
+                  <div class="self-center no-outline" tabindex="0" style="min-width: 100px">{{ l.name }}</div>
 
+                  <q-select label="Etat" v-model="l.state" :options="options" @click="typeSelect"
+                            style="min-width: 200px"/>
+                  <q-input v-model="l.note" outlined/>
+                  <q-btn round icon-right="edit"/>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
       </div>
     </div>
   </q-page>
-  <!--  </section>-->
 </template>
 
 <script>
@@ -34,9 +45,6 @@ export default {
       options: ['Tres bon', 'Bon', 'Use', 'Sale', 'Tres sale']
     }
   },
-  // props: {
-  //   edl: {type: Object, required: true}
-  // },
   components: {
     'room-component': roomComponent
   },
@@ -47,7 +55,7 @@ export default {
     //  load user data at opening of the page ....
     this.$axios.get('http://localhost:8888/api/v1/edl/' + this.apptId)
       .then(response => {
-        this.edl = response.data.edl;
+        this.edl = response.data.edl.findings;
       })
       .catch(err => {
         alert(err);
