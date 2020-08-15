@@ -10,12 +10,14 @@
         <div v-for="r in this.edl.findings">
           <template>
             <div class="row">
-              <div class="self-center full-width text-h6 no-outline" tabindex="0" style="min-width: 100px">{{
-                  r.name }}
+              <div class="self-center full-width text-h6 no-outline" tabindex="0" style="min-width: 100px">
+                {{ r.name }}
               </div>
               <div v-for="l in r.findings">
                 <div class="row">
-                  <div class="self-center text-weight-bold no-outline" tabindex="0" style="min-width: 100px">{{ l.name }}</div>
+                  <div class="self-center text-weight-bold no-outline" tabindex="0" style="min-width: 100px">
+                    {{ l.name }}
+                  </div>
 
                   <q-select label="Etat" v-model="l.state" :options="options" @click="typeSelect"
                             style="min-width: 200px"/>
