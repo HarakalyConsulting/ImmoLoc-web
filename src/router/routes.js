@@ -10,9 +10,14 @@ const routes = [
     children: [{ path: '', component: () => import('pages/owner/Profile.vue') }]
   },
   {
+    path: '/owner/property/add',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/owner/PropertyAdd.vue') }]
+  },
+  {
     path: '/owner/property/:id',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/owner/Property.vue') }]
+    children: [{ path: '', component: () => import('pages/owner/PropertyView.vue') }]
   },
   {
     path: '/owner/edl/:id',

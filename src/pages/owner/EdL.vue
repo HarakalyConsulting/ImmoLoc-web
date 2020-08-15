@@ -3,12 +3,12 @@
     <div>
       <div class="text-h5">Etats des Lieux</div>
       <div class="q-gutter-md col items-start">
+        <div class="text-h6">Date: {{this.edl.created}}</div>
         <div v-for="r in this.edl">
           <template>
             <div class="row">
               <div class="self-center full-width text-h6 no-outline" tabindex="0" style="min-width: 100px">{{
-                  r.name
-                }}
+                  r.name }}
               </div>
               <div v-for="l in r.findings">
                 <div class="row">
@@ -49,11 +49,14 @@ export default {
     'room-component': roomComponent
   },
   created() {
+    let query;
     //  take appart id from the path
     this.apptId = this.$route.params.id;
+    if (this.$route.query.test || false)
+      query = "?last=true"
     //this.$route.fullPath
     //  load user data at opening of the page ....
-    this.$axios.get('http://localhost:8888/api/v1/edl/' + this.apptId)
+    this.$axios.get('http://localhost:8888/api/v1/edl/' + this.apptId + query)
       .then(response => {
         this.edl = response.data.edl.findings;
       })

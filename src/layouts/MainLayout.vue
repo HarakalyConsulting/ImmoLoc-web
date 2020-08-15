@@ -52,7 +52,7 @@ export default {
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
         <q-toolbar-title>APP --- </q-toolbar-title>
-        <div>Bianvenu {{toolbarMessage}}</div>
+        <div><q-icon name="warning" color="red"/> Bienvenu {{toolbarMessage}}</div>
       </q-toolbar>
     </q-header>
 
