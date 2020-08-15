@@ -3,8 +3,8 @@
     <div>
       <div class="text-h5">Etats des Lieux</div>
       <div class="q-gutter-md col items-start">
-        <div class="text-h6">Date: {{this.edl.created}}</div>
-        <div v-for="r in this.edl">
+        <div class="text-h7">Date: {{this.edl.created}}</div>
+        <div v-for="r in this.edl.findings">
           <template>
             <div class="row">
               <div class="self-center full-width text-h6 no-outline" tabindex="0" style="min-width: 100px">{{
@@ -22,6 +22,12 @@
               </div>
             </div>
           </template>
+        </div>
+        <q-btn label="Save"/>
+        <q-btn label="Abandon"/>
+        <div v-if="this.edl.state === saved">
+          <q-btn label="Owner signature"/>
+          <q-btn label="Lodger signature"/>
         </div>
       </div>
     </div>
@@ -49,22 +55,20 @@ export default {
     'room-component': roomComponent
   },
   created() {
-    let query;
+    let query = '';
     //  take appart id from the path
     this.apptId = this.$route.params.id;
     if (this.$route.query.test || false)
       query = "?last=true"
-    //this.$route.fullPath
-    //  load user data at opening of the page ....
     this.$axios.get('http://localhost:8888/api/v1/edl/' + this.apptId + query)
       .then(response => {
-        this.edl = response.data.edl.findings;
+        this.edl = response.data.edl;
+//          = response.data.edl.findings;
       })
       .catch(err => {
         alert(err);
         this.edl = [];
       });
-    console.dir(this.edl);
   }
 }
 </script>

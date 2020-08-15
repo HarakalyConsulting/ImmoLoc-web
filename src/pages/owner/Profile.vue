@@ -76,7 +76,8 @@ export default {
   methods: {
     editRow(props) {
       //  Call edl with parameter of line (type room) that was clicked
-      window.location.href = "/edl/" + propertyId;
+      let propertyId =  1;
+      window.location.href = "/owner/property/" + propertyId;
     },
 
     save({commit}, a) {
