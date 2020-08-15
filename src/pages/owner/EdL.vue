@@ -4,6 +4,9 @@
       <div class="text-h5">Etats des Lieux</div>
       <div class="q-gutter-md col items-start">
         <div class="text-h7">Date: {{this.edl.created}}</div>
+        <div class="text-h7">Modifie: {{this.edl.lastChange}}</div>
+        <div class="text-h7">Agent: {{this.edl.agent}}</div>
+        <q-separator/>
         <div v-for="r in this.edl.findings">
           <template>
             <div class="row">
@@ -12,11 +15,11 @@
               </div>
               <div v-for="l in r.findings">
                 <div class="row">
-                  <div class="self-center no-outline" tabindex="0" style="min-width: 100px">{{ l.name }}</div>
+                  <div class="self-center text-weight-bold no-outline" tabindex="0" style="min-width: 100px">{{ l.name }}</div>
 
                   <q-select label="Etat" v-model="l.state" :options="options" @click="typeSelect"
                             style="min-width: 200px"/>
-                  <q-input v-model="l.note" outlined/>
+                  <q-input style="min-width: 400px" v-model="l.note" outlined/>
                   <q-btn round icon-right="edit"/>
                 </div>
               </div>
@@ -25,7 +28,7 @@
         </div>
         <q-btn label="Save"/>
         <q-btn label="Abandon"/>
-        <div v-if="this.edl.state === saved">
+        <div v-if="this.edl.state === 'saved'">
           <q-btn label="Owner signature"/>
           <q-btn label="Lodger signature"/>
         </div>
@@ -58,12 +61,11 @@ export default {
     let query = '';
     //  take appart id from the path
     this.apptId = this.$route.params.id;
-    if (this.$route.query.test || false)
+    if (this.$route.query.last || false)
       query = "?last=true"
     this.$axios.get('http://localhost:8888/api/v1/edl/' + this.apptId + query)
       .then(response => {
         this.edl = response.data.edl;
-//          = response.data.edl.findings;
       })
       .catch(err => {
         alert(err);
