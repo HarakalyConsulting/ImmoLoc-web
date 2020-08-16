@@ -1,76 +1,18 @@
-<script>
-  // https://serversideup.net/drag-and-drop-file-uploads-with-vuejs-and-axios/
-  export default {
-    name: 'PageIndex',
-    data: function () {
-      return {
-        step: 1,
-        firstName: '',
-        lastName: '',
-        rue: '',
-        codePostal: '',
-        town: '',
-        pays: 'France',
-        iban: "",
-        dragAndDropCapable: false,
-        files: []
-      }
-    },
-    methods: [{
-      determineDragAndDropCapable() {
-        var div = document.createElement('div');
-        return (('draggable' in div)
-          || ('ondragstart' in div && 'ondrop' in div))
-          && 'FormData' in window
-          && 'FileReader' in window;
-      },
-
-      upload(e) {
-        this.dragAndDropCapable = this.determineDragAndDropCapable();
-        if (this.dragAndDropCapable) {
-          ['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop'].forEach(function (evt) {
-            this.$refs.fileform.addEventListener(evt, function (e) {
-              e.preventDefault();
-              e.stopPropagation();
-            }.bind(this), false);
-          }.bind(this));
-          this.$refs.fileform.addEventListener('drop', function (e) {
-            for (let i = 0; i < e.dataTransfer.files.length; i++) {
-              this.files.push(e.dataTransfer.files[i]);
-            }
-          }.bind(this));
-        }
-      },
-
-      save: function () {
-        alert(this.firstName);
-      },
-
-      abandon: function () {
-      },
-      notify: function () {
-        alert('notify clicked')
-      }
-    }]
-  }
-</script>
-
-
 <template>
   <q-page class="q-mt-lg q-pa-md bg-grey-2">
     <div>
       <div class="text-h6">Profile Locataire</div>
       <div class="q-gutter-md row items-start">
-        <q-input v-model="lastName" label="Nom"/>
-        <q-input v-model="firstName" label="Prenom"/>
+        <q-input v-model="user.lastName" label="Nom"/>
+        <q-input v-model="user.firstName" label="Prenom"/>
       </div>
 
       <div class="text-h6">Address</div>
       <div class="q-gutter-md row items-start">
-        <q-input v-model="rue" label="Rue"/>
-        <q-input v-model="codePostal" label="Code Postal"/>
-        <q-input v-model="ville" label="Ville"/>
-        <q-input v-model="pays" label="Pays"/>
+        <q-input v-model="user.rue" label="Rue"/>
+        <q-input v-model="user.codePostal" label="Code Postal"/>
+        <q-input v-model="user.ville" label="Ville"/>
+        <q-input v-model="user.pays" label="Pays"/>
       </div>
 
       <div class="text-h6">Dossier</div>
@@ -142,3 +84,71 @@
   </q-page>
 </template>
 
+<script>
+// https://serversideup.net/drag-and-drop-file-uploads-with-vuejs-and-axios/
+export default {
+  name: 'PageIndex',
+  data: function () {
+    return {
+      step: 1,
+      user: {
+        firstName: '',
+        lastName: '',
+        rue: '',
+        codePostal: '',
+        town: '',
+        pays: 'France',
+        iban: "",
+        files: []
+      },
+      dragAndDropCapable: false,
+    }
+  },
+  created() {
+    //  take id from the path
+    let userId = this.$route.params.id;
+    this.$axios.get('http://localhost:8888/api/v1/user/' + userId)
+      .then(response => {
+        this.user.firstName = response.data.name;
+        this.user.lastName = response.data.lastName;
+
+      })},
+
+  methods: [{
+    determineDragAndDropCapable() {
+      var div = document.createElement('div');
+      return (('draggable' in div)
+        || ('ondragstart' in div && 'ondrop' in div))
+        && 'FormData' in window
+        && 'FileReader' in window;
+    },
+
+    upload(e) {
+      this.dragAndDropCapable = this.determineDragAndDropCapable();
+      if (this.dragAndDropCapable) {
+        ['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop'].forEach(function (evt) {
+          this.$refs.fileform.addEventListener(evt, function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+          }.bind(this), false);
+        }.bind(this));
+        this.$refs.fileform.addEventListener('drop', function (e) {
+          for (let i = 0; i < e.dataTransfer.files.length; i++) {
+            this.files.push(e.dataTransfer.files[i]);
+          }
+        }.bind(this));
+      }
+    },
+
+    save: function () {
+      alert(this.firstName);
+    },
+
+    abandon: function () {
+    },
+    notify: function () {
+      alert('notify clicked')
+    }
+  }]
+}
+</script>

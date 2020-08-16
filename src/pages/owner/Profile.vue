@@ -102,11 +102,8 @@ export default {
   created() {
     //  take id from the path
     let userId = this.$route.params.id;
-
-    //  load user data at opening of the page ....
     this.$axios.get('http://localhost:8888/api/v1/user/' + userId)
       .then(response => {
-
         this.a.firstName = response.data.name;
         this.a.lastName = response.data.lastName;
 
