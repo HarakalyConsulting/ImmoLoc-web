@@ -28,7 +28,7 @@
               </div>
             </div>
           </template>
-          <q-btn round ref="{{r.name}}" color="secondary" icon="add" @click="addDefect(r.name)"/>
+          <q-btn round color="secondary" icon="add" @click="addDefect(r)"/>
           <q-separator/>
         </div>
 
@@ -54,8 +54,12 @@ export default {
   model: "",
   methods:{
     addDefect(ref){
-
-    }
+      let i = {};
+      for(i in this.edl)
+        if(i.name == ref.name){
+          i.findings.push({name:'new'})
+        }
+    },
   },
   data() {
     return {
