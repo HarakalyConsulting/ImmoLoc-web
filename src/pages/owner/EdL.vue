@@ -1,8 +1,9 @@
 <template>
   <q-page class="q-mt-lg q-pa-md bg-grey-2">
     <div>
-      <div class="text-h5">Etats des Lieux</div>
+      <div class="text-h4">Etats des Lieux</div>
       <div class="q-gutter-md col items-start">
+        <div class="text-h6">Nom: {{this.edl.name}}</div>
         <div class="text-h7">Date: {{this.edl.created}}</div>
         <div class="text-h7">Modifie: {{this.edl.lastChange}}</div>
         <div class="text-h7">Agent: {{this.edl.agent}}</div>

@@ -112,7 +112,7 @@ export default {
 
         //if (owner === 'owner') {
         //      if (true) {
-        this.$axios.get('http://localhost:8888/api/v1/owner/property/list/' + userId)
+        this.$axios.get('http://localhost:8888/api/v1/owner/' + userId + '/property/list/' )
           .then(list => {
             //  get propertis list
             this.list = list.data.list;
