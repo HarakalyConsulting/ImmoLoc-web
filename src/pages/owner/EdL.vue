@@ -7,11 +7,11 @@
         <div class="text-h7">Date: {{this.edl.created}}</div>
         <div class="text-h7">Modifie: {{this.edl.lastChange}}</div>
         <div class="text-h7">Agent: {{this.edl.agent}}</div>
-        <q-separator/>
+        <q-separator size="3pt"/>
         <div v-for="r in this.edl.findings">
           <template>
-            <div class="row">
-              <div class="self-center full-width text-h6 no-outline" tabindex="0" style="min-width: 100px">
+            <div class="col">
+              <div class="self-center text-h6 no-outline" ref="{{r.name}}" tabindex="0" style="min-width: 100px">
                 {{ r.name }}
               </div>
               <div v-for="l in r.findings">
@@ -23,12 +23,15 @@
                   <q-select label="Etat" v-model="l.state" :options="options" @click="typeSelect"
                             style="min-width: 200px"/>
                   <q-input style="min-width: 400px" v-model="l.note" outlined/>
-                  <q-btn round icon-right="edit"/>
+                  <q-btn round color="secondary" icon="edit"/>
                 </div>
               </div>
             </div>
           </template>
+          <q-btn round ref="{{r.name}}" color="secondary" icon="add" @click="addDefect(r.name)"/>
+          <q-separator/>
         </div>
+
         <q-btn label="Save"/>
         <q-btn label="Abandon"/>
         <div v-if="this.edl.state === 'saved'">
@@ -49,6 +52,11 @@ import roomComponent from 'components/room.vue'
 export default {
   name: "EdL",
   model: "",
+  methods:{
+    addDefect(ref){
+
+    }
+  },
   data() {
     return {
       app: [],
