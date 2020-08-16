@@ -3,18 +3,18 @@
     <div>
       <div class="text-h4">Etats des Lieux</div>
       <div class="q-gutter-md col items-start">
-        <div class="text-h6">Nom: {{this.edl.name}}</div>
-        <div class="text-h7">Date: {{this.edl.created}}</div>
-        <div class="text-h7">Modifie: {{this.edl.lastChange}}</div>
-        <div class="text-h7">Agent: {{this.edl.agent}}</div>
+        <div class="text-h6">Nom: {{edl.name}}</div>
+        <div class="text-h7">Date: {{edl.created}}</div>
+        <div class="text-h7">Modifie: {{edl.lastChange}}</div>
+        <div class="text-h7">Agent: {{edl.agent}}</div>
         <q-separator size="3pt"/>
-        <div v-for="r in this.edl.findings">
+        <div v-for="r in edl.findings" :key="r.name">
           <template>
             <div class="col">
-              <div class="self-center text-h6 no-outline" ref="{{r.name}}" tabindex="0" style="min-width: 100px">
+              <div class="self-center text-h6 no-outline" :ref="r.name" tabindex="0" style="min-width: 100px">
                 {{ r.name }}
               </div>
-              <div v-for="l in r.findings">
+              <div v-for="l in r.findings" :key="l.name">
                 <div class="row">
                   <div class="self-center text-weight-bold no-outline" tabindex="0" style="min-width: 100px">
                     {{ l.name }}
@@ -34,7 +34,7 @@
 
         <q-btn label="Save"/>
         <q-btn label="Abandon"/>
-        <div v-if="this.edl.state === 'saved'">
+        <div v-if="edl.state === 'saved'">
           <q-btn label="Owner signature"/>
           <q-btn label="Lodger signature"/>
         </div>
@@ -53,13 +53,20 @@ export default {
   name: "EdL",
   model: "",
   methods:{
-    addDefect(ref){
-      let i = {};
-      for(i in this.edl)
-        if(i.name == ref.name){
+    addDefect(ref)
+    {
+      for(let i in this.edl)
+      {
+        if(i.name == ref.name)
+        {
           i.findings.push({name:'new'})
         }
+      }
     },
+    typeSelect()
+    {
+      alert('type select');
+    }
   },
   data() {
     return {
