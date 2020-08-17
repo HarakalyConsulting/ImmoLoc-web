@@ -76,7 +76,7 @@ export default {
   methods: {
     editRow(props) {
       //  Call edl with parameter of line (type room) that was clicked
-      let propertyId =  1;
+      let propertyId = 1;
       window.location.href = "/owner/property/" + propertyId;
     },
 
@@ -109,7 +109,7 @@ export default {
 
         //if (owner === 'owner') {
         //      if (true) {
-        this.$axios.get('http://localhost:8888/api/v1/owner/' + userId + '/property/list/' )
+        this.$axios.get('http://localhost:8888/api/v1/owner/' + userId + '/property/list/')
           .then(list => {
             //  get propertis list
             this.list = list.data.list;

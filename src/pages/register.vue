@@ -9,7 +9,7 @@
           <q-card-section class="bg-deep-purple-7">
             <h4 class="text-h5 text-white q-my-md">Registration</h4>
             <div class="absolute-bottom-right q-pr-md" style="transform: translateY(50%);">
-              <q-btn fab icon="close" color="purple-4"/>
+              <q-btn fab icon="back" color="purple-4" to="login"/>
             </div>
           </q-card-section>
           <q-card-section>
@@ -40,9 +40,9 @@
               label="Get Started"
             />
           </q-card-actions>
-          <q-card-section class="text-center q-pa-sm">
-            <a class="text-grey-6" href="login">Return to login</a>
-          </q-card-section>
+<!--          <q-card-section class="text-center q-pa-sm">-->
+<!--            <a class="text-grey-6" href="login">Return to login</a>-->
+<!--          </q-card-section>-->
         </q-card>
       </div>
     </div>
