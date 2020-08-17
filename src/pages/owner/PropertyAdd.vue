@@ -21,9 +21,9 @@
       <div v-if="model != null" disabled="this.descriptionDisabled">
         <div class="text-h6">Description des lieux</div>
 
-        <div class="q-pa-md bg-yellow" style="max-width: 350px">
+        <div class="q-pa-md bg-yellow">
           <div v-for="r in rooms()" :key="index">
-            <room-component :data="r"></room-component>
+            <room-component :r="r"></room-component>
           </div>
         </div>
 
@@ -68,22 +68,27 @@ export default {
       let i, n;
       let r = [];
       if (this.model === 'Chambre') {
-        r.push({...roomComponent.room, name: "Chambre"});
+        r.push({name: "Chambre", findings: roomComponent.room});
       } else {
         if (this.model === 'Studio') {
           n = 1;
         } else {
           n = this.model.substring(1)
         }
+        r.findings = [];
         for (i = 1; i <= n; i++) {
-          r.push({...roomComponent.room, name: "Chambre " + i});
+          r.push({
+            name: "Chambre " + i,
+            findings: roomComponent.room
+          })
         }
-        r.push({...roomComponent.room, name: "Cuisine"});
-        r.push({...roomComponent.room, name: "WC"});
-        r.push({...roomComponent.room, name: "SdB/SdE"});
-        r.push({...roomComponent.room, name: "Toilette"});
-        r.push({...roomComponent.room, name: "Couloir"});
+        r.push({name: "Cuisine", findings: roomComponent.room});
+        r.push({name: "WC", findings: roomComponent.room});
+        r.push({name: "SdB/SdE", findings: roomComponent.room});
+        r.push({name: "Toilette", findings: roomComponent.room});
+        r.push({name: "Couloir", findings: roomComponent.room});
       }
+      console.dir(r);
       return r;
     },
   },

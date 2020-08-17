@@ -8,7 +8,8 @@
         <div class="text-h7">Modifie: {{edl.lastChange}}</div>
         <div class="text-h7">Agent: {{edl.agent}}</div>
         <q-separator size="3pt"/>
-        <div v-for="r in edl.findings" :key="r.name">
+
+        <div v-for="r in edl.premises" :key="r.name">
           <template>
             <div class="col">
               <div class="self-center text-h6 no-outline" :ref="r.name" tabindex="0" style="min-width: 100px">
