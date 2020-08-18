@@ -9,7 +9,7 @@
           {{ l.name }}
         </div>
 
-        <q-select label="Etat" v-model="l.state" :options="options" @click="typeSelect"
+        <q-select label="Etat" v-bind:v-model="l.state" :options="options" @click="typeSelect"
                   style="min-width: 200px"/>
         <q-input style="min-width: 400px" v-model="l.note" outlined/>
         <q-btn round color="secondary" icon="edit"/>
@@ -19,26 +19,28 @@
 </template>
 
 <script>
+
+import { extend } from 'quasar'
+
 export default {
   name: "room",
-  room: [
+  room: extend(true,[],[
     {"name": "porte", "state": "", "note": "", "media": []},
     {"name": "fenetre", "state": "", "note": "", "media": []},
     {"name": "plafond", "state": "", "note": "", "media": []},
-    {"name": "floor", "state": "", "note": "", "media": []},
+    {"name": "sol", "state": "", "note": "", "media": []},
     {"name": "mur 1", "state": "", "note": "", "media": []},
     {"name": "mur 2", "state": "", "note": "", "media": []},
     {"name": "mur 3", "state": "", "note": "", "media": []},
     {"name": "mur 4", "state": "", "note": "", "media": []}
-  ],
+  ]),
   props: {
     r: {type: Object, required: true}
   },
-  methods: {},
+  methods: {
+  },
   data() {
     return {
-      r:{},
-      l:{},
       avalue: '',
       options: ['Tres bon', 'Bon', 'Use', 'Sale', 'Tres sale']
     }

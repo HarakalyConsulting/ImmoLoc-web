@@ -3,11 +3,11 @@
     <div>
       <div class="text-h6">Profile bien</div>
       <div class="q-gutter-md col items-start">
-        <div class="text-h7">Nom: {{this.property.name}}</div>
-        <div class="text-h7">Contrat ID: {{this.property.contract}}</div>
-        <div class="text-h7">Registered: {{this.property.registered}}</div>
-        <div class="text-h7">lastChange: {{this.property.lastChange}}</div>
-        <div class="text-h7">Addresse: {{this.property.address}}</div>
+        <div class="text-h7">Nom: {{property.name}}</div>
+        <div class="text-h7">Contrat ID: {{property.contract}}</div>
+        <div class="text-h7">Registered: {{property.registered}}</div>
+        <div class="text-h7">lastChange: {{property.lastChange}}</div>
+        <div class="text-h7">Addresse: {{property.address}}</div>
         <q-separator />
         <q-btn label="Open defects"/>
         <q-btn label="Etats des Lieux" @click="getEdls(true)"/>

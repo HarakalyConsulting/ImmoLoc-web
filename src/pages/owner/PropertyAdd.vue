@@ -18,12 +18,12 @@
         </div>
       </div>
 
-      <div v-if="model != null" disabled="this.descriptionDisabled">
+      <div v-if="model != null" >
         <div class="text-h6">Description des lieux</div>
 
         <div class="q-pa-md bg-yellow">
           <div v-for="r in rooms()" :key="index">
-            <room-component :r="r"></room-component>
+            <room-component v-bind:r.sync="r" ></room-component>
           </div>
         </div>
 
@@ -57,6 +57,7 @@ export default {
     'room-component': roomComponent
   },
   methods: {
+    roomChangedFunc(){},
     commit(r) {
       this.$axios.post('http://localhost:8888/api/v1/owner/property/add', r)
         .then(result => alert("Property succesfully stored"))
@@ -79,8 +80,8 @@ export default {
         for (i = 1; i <= n; i++) {
           r.push({
             name: "Chambre " + i,
-            findings: roomComponent.room
-          })
+            findings: roomComponent.room}
+          )
         }
         r.push({name: "Cuisine", findings: roomComponent.room});
         r.push({name: "WC", findings: roomComponent.room});
