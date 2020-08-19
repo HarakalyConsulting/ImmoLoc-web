@@ -58,7 +58,7 @@
 
           <q-step
             :name="3"
-            title="Ad template"
+            title="Gurantee"
             icon="assignment"
             :done="step > 3">
             This step won't show up because it is disabled.
