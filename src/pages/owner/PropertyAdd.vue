@@ -19,10 +19,15 @@
       </div>
 
       <div v-if="model != null" >
+        <q-btn label="Creer description des lieux"
+               @click="callFactory()"/>
+      </div>
+
+      <div v-if="inventory != null" >
         <div class="text-h6">Description des lieux</div>
 
         <div class="q-pa-md bg-yellow">
-          <div v-for="r in rooms()" :key="index">
+          <div v-for="r in inventory.premises" :key="index">
             <room-component v-bind:r.sync="r" ></room-component>
           </div>
         </div>
@@ -57,45 +62,30 @@ export default {
     'room-component': roomComponent
   },
   methods: {
-    roomChangedFunc(){},
+    callFactory(){
+      let setup = {setup : {
+        "propertyID":"13432",
+        "propertyType":this.model
+      }}
+      this.$axios.post('http://localhost:8888/api/v1/inventory/factory', setup)
+        .then(result => {
+          this.inventory = result.data.inventory;
+          console.dir(this.inventory);
+        })
+        .catch(err => alert(err))
+    },
     commit(r) {
-      this.$axios.post('http://localhost:8888/api/v1/owner/property/add', r)
-        .then(result => alert("Property succesfully stored"))
+      this.$axios.post('http://localhost:8888/api/v1/inventory', this.inventory)
+        .then(result => alert(result))
         .catch(err => alert(err))
     },
     typeSelect() {
-    },
-    rooms() {
-      let i, n;
-      let r = [];
-      if (this.model === 'Chambre') {
-        r.push({name: "Chambre", findings: roomComponent.room});
-      } else {
-        if (this.model === 'Studio') {
-          n = 1;
-        } else {
-          n = this.model.substring(1)
-        }
-        r.findings = [];
-        for (i = 1; i <= n; i++) {
-          r.push({
-            name: "Chambre " + i,
-            findings: roomComponent.room}
-          )
-        }
-        r.push({name: "Cuisine", findings: roomComponent.room});
-        r.push({name: "WC", findings: roomComponent.room});
-        r.push({name: "SdB/SdE", findings: roomComponent.room});
-        r.push({name: "Toilette", findings: roomComponent.room});
-        r.push({name: "Couloir", findings: roomComponent.room});
-      }
-      console.dir(r);
-      return r;
     },
   },
   data() {
     return {
       name: "Property",
+      inventory: null,
       model: null,
       descriptionDisabled: true,
       address: {name: '', street: '', codePostal: '', town: '', country: 'France'},

@@ -24,7 +24,8 @@ import { extend } from 'quasar'
 
 export default {
   name: "room",
-  room: extend(true,[],[
+  room() {
+    return [
     {"name": "porte", "state": "", "note": "", "media": []},
     {"name": "fenetre", "state": "", "note": "", "media": []},
     {"name": "plafond", "state": "", "note": "", "media": []},
@@ -33,7 +34,7 @@ export default {
     {"name": "mur 2", "state": "", "note": "", "media": []},
     {"name": "mur 3", "state": "", "note": "", "media": []},
     {"name": "mur 4", "state": "", "note": "", "media": []}
-  ]),
+  ]},
   props: {
     r: {type: Object, required: true}
   },
