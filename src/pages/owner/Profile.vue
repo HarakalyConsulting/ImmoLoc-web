@@ -27,10 +27,15 @@
           :data="list"
           :columns="columns"
           row-key="name"
-        >
+        ><template v-slot:top-right >
+          <q-btn dense round flat color="grey" name="add" to="../property/add"
+                 icon="add">
+          </q-btn>
+        </template>
           <template v-slot:body-cell-actions="props">
             <q-td :props="props">
-              <q-btn dense round flat color="grey" @click="editRow(props)" icon="edit">
+              <q-btn dense round flat color="grey" @click="editRow(props)"
+                     icon="edit">
               </q-btn>
             </q-td>
           </template>

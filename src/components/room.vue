@@ -9,7 +9,7 @@
           {{ l.name }}
         </div>
 
-        <q-select label="Etat" v-bind:v-model="l.state" :options="options" @click="typeSelect"
+        <q-select label="Etat" v-model="l.state" :options="options" @click="typeSelect"
                   style="min-width: 200px"/>
         <q-input style="min-width: 400px" v-model="l.note" outlined/>
         <q-btn round color="secondary" icon="edit"/>
@@ -43,7 +43,7 @@ export default {
   data() {
     return {
       avalue: '',
-      options: ['Tres bon', 'Bon', 'Use', 'Sale', 'Tres sale']
+      options: ['Tres bon', 'Bon', 'Use', 'Sale', 'Tres sale', 'N/A']
     }
   }
 }

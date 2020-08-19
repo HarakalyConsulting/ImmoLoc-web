@@ -18,6 +18,9 @@
         </div>
       </div>
 
+      <!--
+      Instead of button, if (model != null) call directly function callFactory()
+      and display received structure -->
       <div v-if="model != null" >
         <q-btn label="Creer description des lieux"
                @click="callFactory()"/>
@@ -44,7 +47,7 @@
           color="red"
           icon="error"
           label="Enregister"
-          @click="save"
+          @click="commit()"
           :loading="Submitting"
           class="q-ma-md"
         ></q-btn>
@@ -67,15 +70,16 @@ export default {
         "propertyID":"13432",
         "propertyType":this.model
       }}
-      this.$axios.post('http://localhost:8888/api/v1/inventory/factory', setup)
+      this.$axios.post('http://localhost:8888/api/v1/factory/inventory', setup)
         .then(result => {
           this.inventory = result.data.inventory;
           console.dir(this.inventory);
         })
         .catch(err => alert(err))
     },
-    commit(r) {
-      this.$axios.post('http://localhost:8888/api/v1/inventory', this.inventory)
+    commit() {
+      this.$axios.post('http://localhost:8888/api/v1/inventory',
+        {inventory:this.inventory})
         .then(result => alert(result))
         .catch(err => alert(err))
     },

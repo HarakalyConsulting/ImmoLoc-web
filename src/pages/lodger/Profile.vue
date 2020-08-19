@@ -27,10 +27,17 @@
             title="Situation sociale"
             icon="settings"
             :done="step > 1">
-            For each ad campaign that you create, you can control how much you're willing to
-            spend on clicks and conversions, which networks and geographical locations you want
-            your ads to show on, and more.
-
+            <template>
+            <div class="q-pa-md">
+              <div class="q-gutter-sm">
+                <q-radio v-model="user.statut" val="salarie" label="Salarie" />
+                <q-radio v-model="user.statut" val="non-salarie" label="Non-salarie" />
+                <q-radio v-model="user.statut" val="etudiant" label="Etudiant" />
+                <q-radio v-model="user.statut" val="retraite" label="Retraite" />
+                <q-radio v-model="user.statut" val="autre" label="Autre" />
+              </div>
+            </div>
+            </template>
             <q-stepper-navigation>
               <q-btn @click="step = 2" color="primary" label="Continue"/>
             </q-stepper-navigation>
@@ -41,7 +48,7 @@
             title="Documents a fournir"
             icon="assignment"
             :done="step > 2">
-            An ad group contains one or more ads which target a shared set of keywords.
+            Vous etes {{user.statut}}, les documents a fournir sont:
 
             <q-stepper-navigation>
               <q-btn @click="step = 3" color="primary" label="Continue"/>
@@ -99,6 +106,7 @@ export default {
         town: '',
         pays: 'France',
         iban: "",
+        statut :"",
         files: []
       },
       dragAndDropCapable: false,
