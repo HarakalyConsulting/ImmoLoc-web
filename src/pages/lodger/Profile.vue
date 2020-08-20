@@ -3,8 +3,10 @@
     <div>
       <div class="text-h6">Profile Locataire</div>
       <div class="q-gutter-md row items-start">
-        <q-input v-model="user.lastName" label="Nom" readonly/>
-        <q-input v-model="user.firstName" label="Prenom" readonly/>
+<!--        make readonly if non-empty-->
+        <q-input v-model="user.lastName" label="Nom" />
+        <q-input v-model="user.firstName" label="Prenom" />
+<!--        ^^^^^^^^^^^^^^^^^^^^^^  -->
       </div>
 
       <div class="text-h6">Address</div>

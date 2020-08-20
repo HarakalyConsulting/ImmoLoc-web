@@ -19,11 +19,11 @@
                   <q-icon name="email"/>
                 </template>
               </q-input>
-              <q-input square clearable v-model="user.username" type="username" label="Username">
-                <template v-slot:prepend>
-                  <q-icon name="person"/>
-                </template>
-              </q-input>
+<!--              <q-input square clearable v-model="user.username" type="username" label="Username">-->
+<!--                <template v-slot:prepend>-->
+<!--                  <q-icon name="person"/>-->
+<!--                </template>-->
+<!--              </q-input>-->
               <q-input square clearable v-model="user.password" type="password" label="Password">
                 <template v-slot:prepend>
                   <q-icon name="lock"/>
@@ -41,9 +41,6 @@
               @click="register"
             />
           </q-card-actions>
-<!--          <q-card-section class="text-center q-pa-sm">-->
-<!--            <a class="text-grey-6" href="login">Return to login</a>-->
-<!--          </q-card-section>-->
         </q-card>
       </div>
     </div>
@@ -59,17 +56,19 @@ export default {
         email: '',
         username: '',
         password: '',
-        type:""
+        type: this.usertype
       }
     }
   },
   methods:{
     register(){
-      this.$axios.post("http://localhost:8888/api/v1/factory/user", this.user)
-      .then(result => alert(result))
+      this.$axios.post("http://localhost:8888/api/v1/factory/user", {user : this.user})
+      .then(result => this.$router.push(this.usertype + '/../profile/' + response.data.id))
       .catch(err => alert(err))
     }
+  },
+  created() {
+    this.usertype = this.$route.params.usertype;
   }
-
 }
 </script>
