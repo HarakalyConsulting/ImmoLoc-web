@@ -14,17 +14,17 @@
           </q-card-section>
           <q-card-section>
             <q-form class="q-px-sm q-pt-xl q-pb-lg">
-              <q-input square clearable v-model="email" type="email" label="Email">
+              <q-input square clearable v-model="user.email" type="email" label="Email">
                 <template v-slot:prepend>
                   <q-icon name="email"/>
                 </template>
               </q-input>
-              <q-input square clearable v-model="username" type="username" label="Username">
+              <q-input square clearable v-model="user.username" type="username" label="Username">
                 <template v-slot:prepend>
                   <q-icon name="person"/>
                 </template>
               </q-input>
-              <q-input square clearable v-model="password" type="password" label="Password">
+              <q-input square clearable v-model="user.password" type="password" label="Password">
                 <template v-slot:prepend>
                   <q-icon name="lock"/>
                 </template>
@@ -37,7 +37,8 @@
               size="lg"
               color="purple-4"
               class="full-width text-white"
-              label="Get Started"
+              label="Register"
+              @click="register"
             />
           </q-card-actions>
 <!--          <q-card-section class="text-center q-pa-sm">-->
@@ -54,10 +55,21 @@ export default {
   name: 'Login',
   data() {
     return {
-      email: '',
-      username: '',
-      password: ''
+      user: {
+        email: '',
+        username: '',
+        password: '',
+        type:""
+      }
+    }
+  },
+  methods:{
+    register(){
+      this.$axios.post("http://localhost:8888/api/v1/factory/user", this.user)
+      .then(result => alert(result))
+      .catch(err => alert(err))
     }
   }
+
 }
 </script>

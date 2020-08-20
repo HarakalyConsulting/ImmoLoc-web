@@ -3,8 +3,8 @@
     <div>
       <div class="text-h6">Profile Locataire</div>
       <div class="q-gutter-md row items-start">
-        <q-input v-model="user.lastName" label="Nom"/>
-        <q-input v-model="user.firstName" label="Prenom"/>
+        <q-input v-model="user.lastName" label="Nom" readonly/>
+        <q-input v-model="user.firstName" label="Prenom" readonly/>
       </div>
 
       <div class="text-h6">Address</div>
@@ -28,15 +28,15 @@
             icon="settings"
             :done="step > 1">
             <template>
-            <div class="q-pa-md">
-              <div class="q-gutter-sm">
-                <q-radio v-model="user.statut" val="salarie" label="Salarie" />
-                <q-radio v-model="user.statut" val="non-salarie" label="Non-salarie" />
-                <q-radio v-model="user.statut" val="etudiant" label="Etudiant" />
-                <q-radio v-model="user.statut" val="retraite" label="Retraite" />
-                <q-radio v-model="user.statut" val="autre" label="Autre" />
+              <div class="q-pa-md">
+                <div class="q-gutter-sm">
+                  <q-radio v-model="user.statut" val="salarie" label="Salarie" />
+                  <q-radio v-model="user.statut" val="non-salarie" label="Non-salarie" />
+                  <q-radio v-model="user.statut" val="etudiant" label="Etudiant" />
+                  <q-radio v-model="user.statut" val="retraite" label="Retraite" />
+                  <q-radio v-model="user.statut" val="autre" label="Autre" />
+                </div>
               </div>
-            </div>
             </template>
             <q-stepper-navigation>
               <q-btn @click="step = 2" color="primary" label="Continue"/>
@@ -106,7 +106,7 @@ export default {
         town: '',
         pays: 'France',
         iban: "",
-        statut :"",
+        statut :"salarie",
         files: []
       },
       dragAndDropCapable: false,
@@ -134,18 +134,22 @@ export default {
     upload(e) {
       this.dragAndDropCapable = this.determineDragAndDropCapable();
       if (this.dragAndDropCapable) {
-        ['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop'].forEach(function (evt) {
-          this.$refs.fileform.addEventListener(evt, function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-          }.bind(this), false);
-        }.bind(this));
+        // ['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop'].forEach(function (evt) {
+        //   this.$refs.fileform.addEventListener(evt, function (e) {
+        //     e.preventDefault();
+        //     e.stopPropagation();
+        //   }.bind(this), false);
+        // }.bind(this));
         this.$refs.fileform.addEventListener('drop', function (e) {
           for (let i = 0; i < e.dataTransfer.files.length; i++) {
             this.files.push(e.dataTransfer.files[i]);
           }
         }.bind(this));
       }
+      this.files.forEach(function (file){
+        this.$axios.post('http://localhost:8888/api/v1/upload', file)
+        .catch(err => console.log(err));
+      })
     },
 
     save: function () {
