@@ -52,6 +52,7 @@ export default {
   name: 'Login',
   data() {
     return {
+      usertype : '',
       user: {
         email: '',
         username: '',
@@ -62,9 +63,7 @@ export default {
   },
   methods:{
     register(){
-      this.$axios.post("http://localhost:8888/api/v1/factory/user", {user : this.user})
-      .then(result => this.$router.push(this.usertype + '/../profile/' + response.data.id))
-      .catch(err => alert(err))
+      this.$router.push(this.usertype + '/../profile/' + 'new' + this.usertype)
     }
   },
   created() {

@@ -100,29 +100,19 @@ export default {
   data: function () {
     return {
       step: 1,
-      user: {
-        firstName: '',
-        lastName: '',
-        rue: '',
-        codePostal: '',
-        town: '',
-        pays: 'France',
-        iban: "",
-        statut :"salarie",
-        files: []
-      },
+      user: {},
       dragAndDropCapable: false,
     }
   },
   created() {
     //  take id from the path
-    let userId = this.$route.params.id;
-    this.$axios.get('http://localhost:8888/api/v1/user/' + userId)
-      .then(response => {
-        this.user.firstName = response.data.name;
-        this.user.lastName = response.data.lastName;
-
-      })},
+    //let userId = this.$route.params.id;
+    let email = ctx.query.email;
+    let type = ctx.query.type;
+    this.$axios.get('http://localhost:8888/api/v1/user?email=' + email + "&type=" + type)
+      .then(response => this.user = response.data)
+      .catch(err => alert(err))
+  },
 
   methods: [{
     determineDragAndDropCapable() {
@@ -136,12 +126,6 @@ export default {
     upload(e) {
       this.dragAndDropCapable = this.determineDragAndDropCapable();
       if (this.dragAndDropCapable) {
-        // ['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop'].forEach(function (evt) {
-        //   this.$refs.fileform.addEventListener(evt, function (e) {
-        //     e.preventDefault();
-        //     e.stopPropagation();
-        //   }.bind(this), false);
-        // }.bind(this));
         this.$refs.fileform.addEventListener('drop', function (e) {
           for (let i = 0; i < e.dataTransfer.files.length; i++) {
             this.files.push(e.dataTransfer.files[i]);
