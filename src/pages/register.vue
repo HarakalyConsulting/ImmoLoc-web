@@ -49,21 +49,22 @@
 
 <script>
 export default {
-  name: 'Login',
+  name: 'Register',
   data() {
     return {
       usertype : '',
-      user: {
-        email: '',
-        username: '',
-        password: '',
-        type: this.usertype
-      }
+      user: {}
     }
   },
   methods:{
     register(){
-      this.$router.push(this.usertype + '/../profile/' + 'new' + this.usertype)
+      this.$axios.post('http://localhost:8888/api/v1/auth/register', this.form)
+        .then(response => {
+          this.$store.commit('main/token', response.headers.Authorization);
+          this.$store.commit('main/toolbarMessage', response.data.name);
+
+          this.$router.push(this.usertype + '/../profile/')
+        }).catch(err => alert("User doesn't exist:" + err));
     }
   },
   created() {

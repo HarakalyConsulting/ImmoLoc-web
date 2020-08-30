@@ -65,8 +65,8 @@
             :done="step > 3">
             This step won't show up because it is disabled.
             <q-stepper-navigation>
-              <q-btn color="primary" label="Finish"/>
-              <q-btn @click="step = 4" class="q-ml-sm" color="primary" flat label="Back"/>
+              <q-btn @click="submit" color="primary" label="Finish"/>
+              <q-btn @click="step = 2" class="q-ml-sm" color="primary" flat label="Back"/>
             </q-stepper-navigation>
           </q-step>
 
@@ -124,18 +124,37 @@ export default {
     },
 
     upload(e) {
+      /*
+        Initialize the form data
+      */
+      let files = new FormData();
+
       this.dragAndDropCapable = this.determineDragAndDropCapable();
       if (this.dragAndDropCapable) {
         this.$refs.fileform.addEventListener('drop', function (e) {
           for (let i = 0; i < e.dataTransfer.files.length; i++) {
-            this.files.push(e.dataTransfer.files[i]);
+            this.files.append(' ', e.dataTransfer.files[i]);
           }
         }.bind(this));
+      } else {
+        //  non drag & drop case
       }
-      this.files.forEach(function (file){
-        this.$axios.post('http://localhost:8888/api/v1/upload', file)
-        .catch(err => console.log(err));
+      /*
+        Make the request to the POST /single-file URL
+      */
+      axios.post( '/file-progress',
+        files,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          },
+        }
+      ).then(function(){
+        console.log('SUCCESS!!');
       })
+        .catch(function(){
+          console.log('FAILURE!!');
+        });
     },
 
     save: function () {

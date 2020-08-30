@@ -1,36 +1,3 @@
-<script>
-export default {
-  name: 'Login',
-  methods: {
-    signIn() {
-      this.$axios.post('http://localhost:8888/api/v1/auth/login', this.form)
-        .then(response => {
-          this.$store.commit('main/toolbarMessage', response.data.name);
-          this.$router.push(this.usertype + '/../profile/' + response.data.id);
-          // { "data": { "name": "Robert Harakaly", "id": 823754,
-          // "token": "hskghfiruegbsmbsjhbir34y3hb" }, "status": 200, "statusText": "OK",
-          // "headers": { "content-length": "76", "content-type": "application/json;
-          // charset=utf-8" }, "config": { "url": "http://localhost:8888/api/v1/auth/login",
-          // "method": "post", "data": "{\"email\":\"dd\",\"username\":\"\",\"password\":\"dd\"}",
-          // "headers": { "Accept": "application/json, text/plain, */*", "Content-Type":
-          // "application/json;charset=utf-8" }, "transformRequest": [ null ],
-          // "transformResponse": [ null ], "timeout": 0, "xsrfCookieName": "XSRF-TOKEN",
-          // "xsrfHeaderName": "X-XSRF-TOKEN", "maxContentLength": -1 }, "request": {} }
-        }).catch(err => alert("User doesn't exist:" + err));
-    },
-  },
-  data() {
-    return {
-      usertype: '',
-      form: {email: '', username: '', password: ''}
-    };
-  },
-  created() {
-    this.usertype = this.$route.params.usertype;
-  }
-}
-</script>
-
 <template>
   <q-page
     class="window-height window-width row justify-center items-center"
@@ -76,7 +43,7 @@ export default {
           </q-card-section>
 
           <q-card-actions class="q-px-lg">
-            <q-btn unelevated size="lg" color="purple-4" class="full-width text-white" label="Sign In" @click="signIn"/>
+            <q-btn unelevated size="lg" color="purple-4" class="full-width text-white" label="Sign In" @click="login"/>
           </q-card-actions>
 
 <!--          <q-card-section class="text-center q-pa-sm">-->
@@ -88,5 +55,37 @@ export default {
   </q-page>
 </template>
 
-<style>
-</style>
+<script>
+export default {
+  name: 'Login',
+  data() {
+    return {
+      usertype: '',
+      form: {}
+    };
+  },
+  methods: {
+    login() {
+      this.$axios.post('http://localhost:8888/api/v1/auth/login', this.form)
+        .then(response => {
+          this.$store.commit('main/token', response.headers.Authorization);
+          this.$store.commit('main/toolbarMessage', response.data.name);
+
+          this.$router.push(this.usertype + '/../profile/' + response.data.id);
+          // { "data": { "name": "Robert Harakaly", "id": 823754,
+          // "token": "hskghfiruegbsmbsjhbir34y3hb" }, "status": 200, "statusText": "OK",
+          // "headers": { "content-length": "76", "content-type": "application/json;
+          // charset=utf-8" }, "config": { "url": "http://localhost:8888/api/v1/auth/login",
+          // "method": "post", "data": "{\"email\":\"dd\",\"username\":\"\",\"password\":\"dd\"}",
+          // "headers": { "Accept": "application/json, text/plain, */*", "Content-Type":
+          // "application/json;charset=utf-8" }, "transformRequest": [ null ],
+          // "transformResponse": [ null ], "timeout": 0, "xsrfCookieName": "XSRF-TOKEN",
+          // "xsrfHeaderName": "X-XSRF-TOKEN", "maxContentLength": -1 }, "request": {} }
+        }).catch(err => alert("User doesn't exist:" + err));
+    },
+  },
+  created() {
+    this.usertype = this.$route.params.usertype;
+  }
+}
+</script>
